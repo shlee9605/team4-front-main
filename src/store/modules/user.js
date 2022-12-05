@@ -57,35 +57,6 @@ export default {
   actions: {
     // 리스트 조회
     actUserList(context, payload) {
-      /* 테스트 데이터 세팅 */
-      /*
-      const UserList = [
-        {
-          id: 1,
-          departmentId: 1,
-          name: '홍길동',
-          userid: 'hong',
-          role: 'leader',
-          email: 'hong@email.com',
-          phone: '010-1234-5678',
-          createdAt: '2021-12-01T00:00:00.000Z',
-          Department: { id: 1, name: '개발팀', code: 'dev', createdAt: '2021-12-01T00:00:00.000Z' }
-        },
-        {
-          id: 2,
-          departmentId: 2,
-          name: '김길동',
-          userid: 'kim',
-          role: 'member',
-          email: 'kim@email.com',
-          phone: '010-9876-5432',
-          createdAt: '2021-12-01T00:00:00.000Z',
-          Department: { id: 2, name: '영업팀', code: 'sales', createdAt: '2021-12-01T00:00:00.000Z' }
-        }
-      ]
-      context.commit('setUserList', UserList)
-      */
-
       /* RestAPI 호출 */
       api
         .get('/serverApi/users', { params: payload })
@@ -103,14 +74,6 @@ export default {
     actUserInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-
-      /* 테스트 데이터 세팅 */
-      /*
-      setTimeout(() => {
-        const insertedResult = 1
-        context.commit('setInsertedResult', insertedResult)
-      }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
-      */
 
       /* RestAPI 호출 */
       api
@@ -138,46 +101,6 @@ export default {
       // 상태값 초기화
       context.commit('setUser', { ...stateInit.User })
 
-      /* 테스트 데이터 세팅 */
-      /*
-      setTimeout(() => {
-        const UserList = [
-          {
-            id: 1,
-            departmentId: 1,
-            name: '홍길동',
-            userid: 'hong',
-            role: 'leader',
-            email: 'hong@email.com',
-            phone: '010-1234-5678',
-            updatedPwDate: '2021-12-01T00:00:00.000Z',
-            createdAt: '2021-12-01T00:00:00.000Z',
-            Department: { id: 1, name: '개발팀', code: 'dev', createdAt: '2021-12-01T00:00:00.000Z' }
-          },
-          {
-            id: 2,
-            departmentId: 2,
-            name: '김길동',
-            userid: 'kim',
-            role: 'member',
-            email: 'kim@email.com',
-            phone: '010-9876-5432',
-            updatedPwDate: '2021-12-01T00:00:00.000Z',
-            createdAt: '2021-12-01T00:00:00.000Z',
-            Department: { id: 2, name: '영업팀', code: 'sales', createdAt: '2021-12-01T00:00:00.000Z' }
-          }
-        ]
-
-        let User = { ...stateInit.User }
-        for (let i = 0; i < UserList.length; i += 1) {
-          if (payload === UserList[i].id) {
-            User = { ...UserList[i] }
-          }
-        }
-        context.commit('setUser', User)
-      }, 300)
-      */
-
       /* RestAPI 호출 */
       api
         .get(`/serverApi/users/${payload}`)
@@ -196,14 +119,6 @@ export default {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
 
-      /* 테스트 데이터 세팅 */
-      /*
-      setTimeout(() => {
-        const updatedResult = 1
-        context.commit('setUpdatedResult', updatedResult)
-      }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
-      */
-
       /* RestAPI 호출 */
       api
         .put(`/serverApi/users/${payload.id}`, payload)
@@ -221,14 +136,6 @@ export default {
     actUserDelete(context, payload) {
       // 상태값 초기화
       context.commit('setDeletedResult', null)
-
-      /* 테스트 데이터 세팅 */
-      /*
-      setTimeout(() => {
-        const deletedResult = 1
-        context.commit('setDeletedResult', deletedResult)
-      }, 300) // state값의 변화를 감지하기 위하여 일부러 지연 시켰다.
-      */
 
       /* RestAPI 호출 */
       api
