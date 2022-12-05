@@ -1,21 +1,6 @@
 import api from '../apiUtil'
 import jwtDecode from 'jwt-decode'
 
-/*
-  테스트용 토큰
-  {
-    "id": 1,
-    "userid": "hong",
-    "name": "홍길동",
-    "role": "leader",
-    "iat": 1639466985,
-    "exp": 1954826985
-  }
-  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcmlkIjoiaG9uZyIsIm5hbWUiOiLtmY3quLjrj5kiLCJyb2xlIjoibGVhZGVyIiwiaWF0IjoxNjM5NDY2OTg1LCJleHAiOjE5NTQ4MjY5ODV9.-hTy681tbe62pV9tjArzc5Ig33frnh9j_NjegGiHJNw
-*/
-const testToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcmlkIjoiaG9uZyIsIm5hbWUiOiLtmY3quLjrj5kiLCJyb2xlIjoibGVhZGVyIiwiaWF0IjoxNjM5NDY2OTg1LCJleHAiOjE5NTQ4MjY5ODV9.-hTy681tbe62pV9tjArzc5Ig33frnh9j_NjegGiHJNw'
-
 const stateInit = {
   TokenUser: {
     id: null,
@@ -97,19 +82,6 @@ export default {
         context.commit('setLogout') // 로그아웃 처리
         window.localStorage.removeItem('token') // 토큰 삭제
       }, 1000) // 처리 시간을 1초로 주었다.
-
-      /* RestApi 호출 */
-      // api 결과와 관계없이 로컬에서는 로그아웃 처리 함
-      /*
-      try {
-        await api.delete('/serverApi/auths/token') // await를 걸지 않으면 토큰삭제 후 전송될 수 있음
-        context.commit('setLogout') // 로그아웃 처리
-        window.localStorage.removeItem('token') // 토큰 삭제
-      } catch (err) {
-        context.commit('setLogout') // 로그아웃 처리
-        window.localStorage.removeItem('token') // 토큰 삭제
-      }
-      */
     },
     authTokenUser(context, payload) {
       // 토큰사용자 설정
