@@ -86,6 +86,15 @@ export default {
         })
       })
 
+      ///////important///////
+      // const data = {
+      //   tagId: 1,
+      //   value: 0
+      // }
+
+      // mqttClient.publish(topic, JSON.stringify(data));
+      ///////important///////
+
       // 메세지 실시간 수신
       mqttClient.on('message', (topic, message) => {
         const mqttData = JSON.parse(message) // json string으로만 받을 수 있음
