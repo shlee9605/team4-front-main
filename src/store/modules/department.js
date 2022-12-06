@@ -38,7 +38,6 @@ export default {
     },
     setInsertedResult(state, data) {
       state.InsertedResult = data
-      console.log('data?')
     },
     setUpdatedResult(state, data) {
       state.UpdatedResult = data
