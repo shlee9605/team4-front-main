@@ -2,16 +2,11 @@ import api from '../apiUtil'
 
 // 초기값 선언
 const stateInit = {
-  User: {
+  Department: {
     id: null,
-    departmentId: null,
     name: null,
-    userid: null,
-    password: null,
-    role: null,
-    email: null,
-    phone: null,
-    updatedPwDate: null,
+    code: null,
+    description: null,
     createdAt: null,
     updatedAt: null
   }
@@ -19,30 +14,31 @@ const stateInit = {
 
 export default {
   state: {
-    UserList: [],
-    User: { ...stateInit.User },
+    DepartmentList: [],
+    Department: { ...stateInit.Department },
     InsertedResult: null,
     UpdatedResult: null,
     DeletedResult: null,
     InputMode: null // 입력모드 (등록: insert, 수정: update)
   },
   getters: {
-    UserList: state => state.UserList,
-    User: state => state.User,
-    UserInsertedResult: state => state.InsertedResult,
-    UserUpdatedResult: state => state.UpdatedResult,
-    UserDeletedResult: state => state.DeletedResult,
-    UserInputMode: state => state.InputMode
+    DepartmentList: state => state.DepartmentList,
+    Department: state => state.Department,
+    DepartmentInsertedResult: state => state.InsertedResult,
+    DepartmentUpdatedResult: state => state.UpdatedResult,
+    DepartmentDeletedResult: state => state.DeletedResult,
+    DepartmentInputMode: state => state.InputMode
   },
   mutations: {
-    setUserList(state, data) {
-      state.UserList = data
+    setDepartmentList(state, data) {
+      state.DepartmentList = data
     },
-    setUser(state, data) {
-      state.User = data
+    setDepartment(state, data) {
+      state.Department = data
     },
     setInsertedResult(state, data) {
       state.InsertedResult = data
+      console.log('data?')
     },
     setUpdatedResult(state, data) {
       state.UpdatedResult = data
@@ -55,92 +51,93 @@ export default {
     }
   },
   actions: {
-    // 리스트 조회
-    actUserList(context, payload) {
+    // 부서 리스트 조회
+    actDepartmentList(context, payload) {
+
       /* RestAPI 호출 */
       api
-        .get('/serverApi/users', { params: payload })
+        .get('/serverApi/departments', { params: payload })
         .then(response => {
-          const userList = response && response.data && response.data.rows
-          context.commit('setUserList', userList)
+          const departmentList = response && response.data && response.data.rows
+          context.commit('setDepartmentList', departmentList)
         })
         .catch(error => {
-          // 에러인 경우 처리
-          console.error('UserList.error', error)
-          context.commit('setUserList', [])
+          console.error('DepartmentList.error', error)
+          context.commit('setDepartmentList', [])
         })
     },
-    // 등록
-    actUserInsert(context, payload) {
+    // 부서 등록
+    actDepartmentInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
 
       /* RestAPI 호출 */
       api
-        .post('/serverApi/users', payload)
+        .post('/serverApi/departments', payload)
         .then(response => {
           const insertedResult = response && response.data && response.data.id
           context.commit('setInsertedResult', insertedResult)
+          console.log(insertedResult)
+          
         })
         .catch(error => {
-          // 에러인 경우 처리
-          console.error('UserInsert.error', error)
+          console.error('DepartmentInsert.error', error)
           context.commit('setInsertedResult', -1)
         })
     },
-    // 초기화
-    actUserInit(context, payload) {
-      context.commit('setUser', { ...stateInit.User })
+    // 부서정보 초기화
+    actDepartmentInit(context, payload) {
+      context.commit('setDepartment', { ...stateInit.Department })
     },
-    // 입력모드
-    actUserInputMode(context, payload) {
+    // 입력모드 설정
+    actDepartmentInputMode(context, payload) {
       context.commit('setInputMode', payload)
     },
-    // 상세정보 조회
-    actUserInfo(context, payload) {
+    // 부서 상세정보 조회
+    actDepartmentInfo(context, payload) {
       // 상태값 초기화
-      context.commit('setUser', { ...stateInit.User })
-
+      context.commit('setDepartment', { ...stateInit.Department })
+      
       /* RestAPI 호출 */
       api
-        .get(`/serverApi/users/${payload}`)
+        .get(`/serverApi/departments/${payload}`)
         .then(response => {
-          const user = response && response.data
-          context.commit('setUser', user)
+          const department = response && response.data
+          context.commit('setDepartment', department)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('UserInfo.error', error)
-          context.commit('setUser', -1)
+          console.error('DeptInfo.error', error)
+          context.commit('setDept', -1)
         })
     },
-    // 수정
-    actUserUpdate(context, payload) {
+    actDepartmentUpdate(context, payload) {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
 
       /* RestAPI 호출 */
       api
-        .put(`/serverApi/users/${payload.id}`, payload)
+        .put(`/serverApi/departments/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
           context.commit('setUpdatedResult', updatedResult)
         })
         .catch(error => {
           // 에러인 경우 처리
-          console.error('UserUpdate.error', error)
+          console.error('DepartmentUpdate.error', error)
           context.commit('setUpdatedResult', -1)
         })
     },
     // 삭제
-    actUserDelete(context, payload) {
+    actDepartmentDelete(context, payload) {
       // 상태값 초기화
       context.commit('setDeletedResult', null)
 
       /* RestAPI 호출 */
       api
-        .delete(`/serverApi/users/${payload}`)
+        .delete(`/serverApi/departments/${payload}`)
         .then(response => {
+          console.log('is it deleted')
           const deletedResult = response && response.data && response.data.deletedCount
           context.commit('setDeletedResult', deletedResult)
         })
