@@ -4,7 +4,7 @@
     <div>장비: {{ selected.deviceName }}</div>
     <div>태그: {{ selected.tagList }}</div>
     <div v-if="chartData">
-      <line-chart :chart-data="chartData" :options="options" ref="chart" style="width: 500px"></line-chart>
+      <line-chart ref="chart" :chart-data="chartData" :options="options" style="width: 500px"></line-chart>
     </div>
   </div>
 </template>
