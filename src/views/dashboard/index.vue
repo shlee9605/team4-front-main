@@ -19,6 +19,7 @@ export default {
   },
   data() {
     return {
+      mqttData: null,
       selected: {
         // 선택된 장비 정보
         deviceId: 1, // TODO: 현재 화면에서 사용할 장비ID(선택 가능하도록 변경하도록 한다.)
@@ -80,6 +81,7 @@ export default {
         // mqtt연결 시 구독한다.
         const topic = 'metacamp/sensor' // 구독할 topic
         mqttClient.subscribe(topic, {}, (error, res) => {
+          console.log('subscribed')
           if (error) {
             console.error('mqtt client error', error)
           }
@@ -98,7 +100,7 @@ export default {
       // 메세지 실시간 수신
       mqttClient.on('message', (topic, message) => {
         const mqttData = JSON.parse(message) // json string으로만 받을 수 있음
-        // console.log(mqttData.temperature)
+        console.log(mqttData)
 
         // 선택된 devicdId만 수용함
         this.removeOldData() // 오래된 데이터 제거
@@ -127,6 +129,17 @@ export default {
     },
     makeChartData() {
       // 차트용 데이터 생성
+
+      /* 테스트 데이터 */
+      // this.chartData = {
+      //   labels: ['1sec', '2sec', '3sec', '4sec', '5sec'],
+      //   datasets: [
+      //     {
+      //       label: '장비1',
+      //       data: [100, 120, 130, 150, 110]
+      //     }
+      //   ]
+      // }
 
       // mqtt정보가 없으면 기본 그래프를 그려준다.(이것이 없으면 그래프 자체가 나오지 않음)
       if (this.mqttDataList.length === 0) {
@@ -175,16 +188,18 @@ export default {
           const tagData = mqttData[label] // 현재 데이터셋 label과 같은 태그만 추출한다.
           datas.push(tagData)
         }
+
         datasetDatas.push({
           label: label,
           fill: false,
           data: datas
         })
       }
-      return datasetDatas.map((item, idx) => {
-        const color = idx === 0 ? '#1B9CFC' : '#e74c3c'
-        return { ...item, borderColor: color }
-      })
+      return datasetDatas
+      // return datasetDatas.map((item, idx) => {
+      //   const color = idx === 0 ? '#1B9CFC' : '#e74c3c'
+      //   return { ...item, borderColor: color }
+      // })
     }
   }
 }

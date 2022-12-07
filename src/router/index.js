@@ -26,11 +26,11 @@ const routes = [
       {
         path: '/user',
         component: () => import('../views/user')
+      },
+      {
+        path: '/edukit',
+        component: () => import('../views/edukit')
       }
-      // {
-      //   path: '/device',
-      //   component: () => import('../views/device')
-      // }
     ]
   },
   {

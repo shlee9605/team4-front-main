@@ -68,6 +68,7 @@ export default {
           // 에러인 경우 처리
           context.commit('setLoading', false)
           context.commit('setError', error)
+          console.log(payload)
         })
     },
     async authLogout(context) {
