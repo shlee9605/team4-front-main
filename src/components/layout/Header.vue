@@ -5,8 +5,10 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">메뉴1</b-nav-item>
-          <b-nav-item href="#">메뉴2</b-nav-item>
+          <b-nav-item href="#" @click="$router.push('/edukit').catch(()=>{});">개발부 기계1</b-nav-item>
+          <b-nav-item href="#" @click="$router.push('/edukit').catch(()=>{});">개발부 기계2</b-nav-item>
+          <b-nav-item href="#" @click="$router.push('/edukit').catch(()=>{});">본부 기계1</b-nav-item>
+          <b-nav-item href="#" @click="$router.push('/edukit').catch(()=>{});">본부 기계2</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
