@@ -6,52 +6,117 @@ import mqtt from "mqtt";
 
 class Event{
     constructor(element, edukit){
+        const publish_topic = "myFront";
+        const subscribe_topic = "myEdukit";
+        const port = '9001';
+        const host = 'localhost';
+        const path = '';
+
         const eventElement = document.createElement("div");
 
-        const inputAddressElement = eventElement.appendChild(document.createElement("input"));
-        inputAddressElement.placeholder = "MQTT Host 입력";
-
-        const inputPortElement = eventElement.appendChild(document.createElement("input"));
-        inputPortElement.placeholder = "MQTT Port 입력";
-
-        const inputPathElement = eventElement.appendChild(document.createElement("input"));
-        inputPathElement.placeholder = "MQTT Path 입력";
-
-        const inputTopicElement = eventElement.appendChild(document.createElement("input"));
-        inputTopicElement.placeholder = "MQTT Topic 입력";
-
-        const buttonElement = eventElement.appendChild(document.createElement("button"));
-        buttonElement.innerText = "Connect"
+        //connection check & reconnect
+        const connectButton = eventElement.appendChild(document.createElement("button"));
+        connectButton.innerText = "Connect"
+        connectButton.style.position = 'relative'
+        connectButton.style.right = '320%'
+        connectButton.style.top = '20%'
 
         const statusElement = eventElement.appendChild(document.createElement("span"));
         statusElement.innerText = "연결";
         statusElement.style.color = "red";
+        statusElement.style.position = 'relative'
+        statusElement.style.right = '310%'
+        statusElement.style.top = '12%'
 
-        buttonElement.addEventListener("click", () => {
-            let props = {
-                hostname: inputAddressElement.value,
-                port: inputPortElement.value,
-                path: inputPathElement.value,
-                topic: inputTopicElement.value,
-                status: statusElement.style,
-                edukit: edukit
-            }
+        connectButton.addEventListener("click", () => {
             statusElement.style.color = "red";
             if(this.client) this.client.end();
-
-            this.setEvent(props);
+            this.setMQTT(host, port, path, subscribe_topic, statusElement.style, startButton.style, edukit);
         });
+
+        //start button
+        const startButton = eventElement.appendChild(document.createElement("button"));
+        startButton.innerText = "시작"
+        startButton.style.position = 'relative'
+        startButton.style.right = '215%'
+        startButton.style.top = '12.3%'
+        startButton.style.color = 'red'
+
+        //stop button
+        const stopButton = eventElement.appendChild(document.createElement("button"));
+        stopButton.innerText = "정지"
+        stopButton.style.position = 'relative'
+        stopButton.style.right = '145%'
+        stopButton.style.top = '8%'
+        stopButton.style.color = 'red'
+
+        //reset button
+        const resetButton = eventElement.appendChild(document.createElement("button"));
+        resetButton.innerText = "리셋"
+        resetButton.style.position = 'relative'
+        resetButton.style.right = '75%'
+        resetButton.style.top = '3.7%'
+        resetButton.style.color = 'red'
+
+        //event listener
+        startButton.addEventListener("click",()=>{
+            let meg = {
+                tagId : '1',
+                value : '1'
+            }
+            startButton.style.color = "red";
+            stopButton.style.color = "green";
+            resetButton.style.color = "green";
+            this.setStart(publish_topic, meg);
+        });
+
+        stopButton.addEventListener("click",()=>{
+            let meg = {
+                tagId : '1',
+                value : '0'
+            }
+            stopButton.style.color = "red";
+            startButton.style.color = "green";
+            resetButton.style.color = "green";
+            this.setStop(publish_topic, meg);
+        });
+
+        resetButton.addEventListener("click",()=>{
+            let meg = {
+                tagId : '8',
+                value : '0'
+            }
+            resetButton.style.color = "red";
+            this.setReset(publish_topic, meg);
+        });
+
+        //connect at start
+        this.setMQTT(host, port, path, subscribe_topic, statusElement.style, startButton.style, edukit);
 
         element.appendChild(eventElement);
     }
 
-    setEvent(props){
-        let { hostname, port, path, topic, status, edukit } = props;
+    //Event handler
+    setStart(topic, mes){
+        console.log('start');
+        this.client.publish(topic, JSON.stringify(mes));
+    }
 
+    setStop(topic, mes){
+        console.log('stop');
+        this.client.publish(topic, JSON.stringify(mes));
+    }
+
+    setReset(topic, mes){
+        console.log('reset');
+        this.client.publish(topic, JSON.stringify(mes));
+    }
+
+    //connect at start
+    setMQTT(hostname, port, path, topic, status, start, edukit){
         const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
         this.client = mqtt.connect({
             clientId,
-            clean: true,
             protocol: "ws",
             reconnectPeriod: 1000,
             hostname: hostname,
@@ -62,20 +127,21 @@ class Event{
         this.client.on('connect', () => {
             console.log("MQTT Connected");
             status.color = "green";
-            
+            start.color = "green";
+
             this.client.subscribe([topic], () => {
                 console.log(`토픽 연결 완료: ${topic}`);
             });
-            this.client.on('message', (topic, payload) => {
-                console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
 
+            this.client.on('message', (topic, payload)=>{
+                // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
                 let message = JSON.parse(payload);
-                let data = message.Wrapper.filter((p) => p.tagId === "21" || p.tagId === "22");
-                data = data.map((p) => parseInt(p.value));
+                let data = message.Wrapper.filter((p)=>p.tagId === "21" || p.tagId === "22");
+                data = data.map((p)=>parseInt(p.value));
 
                 edukit["yAxis"] = data[0];
                 edukit["xAxis"] = data[1];
-            });
+            })
         });
     }
 }
