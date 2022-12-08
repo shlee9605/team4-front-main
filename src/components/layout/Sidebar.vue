@@ -14,11 +14,11 @@ export default {
   computed: {
     tokenUserRole() {
       return this.$store.getters.TokenUser.role
-    },
+    }
   },
   methods: {
     onClick(path) {
-      this.$router.push(path).catch( () => {
+      this.$router.push(path).catch(() => {
         alert('잘못된 접근입니다.')
       })
     }
