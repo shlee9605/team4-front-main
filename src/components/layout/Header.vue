@@ -18,8 +18,8 @@
             <template #button-content>
               <em>{{ tokenUserName }}</em>
             </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#" @click="onClick('/auth/logout')">Log Out</b-dropdown-item>
+            <b-dropdown-item href="#" @click="onClick('/profile')">프로필</b-dropdown-item>
+            <b-dropdown-item href="#" @click="onClick('/auth/logout')">로그아웃</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

@@ -35,6 +35,11 @@ const routes = [
         path: '/edukit',
         component: () => import('../views/edukit'),
         meta: { permission: true }
+      },
+      {
+        path: '/profile',
+        component: () => import('../views/profile'),
+        meta: { permission: true }
       }
     ]
   },
@@ -116,7 +121,7 @@ router.beforeEach(async (to, from, next) => {
     const tokenUser = store.getters['TokenUser']
     // 유저의 role을 확인하여 페이지 이동을 판단한다
     try {
-      if (tokenUser.role == "팀장") {
+      if (tokenUser.role == "팀장" || tokenUser.role == "admin") {
         next() // admin이나 팀장은 이동하던 페이지로 이동
       } else {
         next('/') // 팀원은 홈으로 이동
