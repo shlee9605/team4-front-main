@@ -8,7 +8,7 @@ const stateInit = {
     name: null,
     userid: null,
     password: null,
-    role: null,
+    role: '대기',
     email: null,
     phone: null,
     updatedPwDate: null,

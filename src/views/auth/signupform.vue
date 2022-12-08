@@ -33,7 +33,7 @@
           userid: null,
           password: null,
           email: null,
-          phone: null,
+          phone: null
         },
       }
     },
