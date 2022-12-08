@@ -66,6 +66,9 @@ export default {
     }
   },
   computed: {
+    tokenUserRole() {
+      return this.$store.getters.TokenUser.role
+    },
     userList() {
       return this.$store.getters.UserList
     },
