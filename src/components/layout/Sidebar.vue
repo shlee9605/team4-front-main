@@ -1,9 +1,9 @@
 <template>
   <div>
     <b-list-group>
-      <b-list-group-item href="#" @click="$router.push('/dashboard')">대시보드</b-list-group-item>
-      <b-list-group-item v-if="tokenUserRole !== '팀원'" href="#" @click="$router.push('/department')">부서 관리</b-list-group-item>
-      <b-list-group-item v-if="tokenUserRole !== '팀원'" href="#" @click="$router.push('/user')">사용자 관리</b-list-group-item>
+      <b-list-group-item href="#" @click="routeDashboard">대시보드</b-list-group-item>
+      <b-list-group-item href="#" @click="routeDepartment">부서 관리</b-list-group-item>
+      <b-list-group-item href="#" @click="routeUser">사용자 관리</b-list-group-item>
       <!-- <b-list-group-item href="#" @click="$router.push('/device')">장비 관리</b-list-group-item> -->
     </b-list-group>
   </div>
@@ -15,8 +15,26 @@ export default {
     tokenUserRole() {
       return this.$store.getters.TokenUser.role
     },
+  },
+  methods: {
+    routeDepartment() {
+      this.$router.push('/department').catch( () => {
+        alert('잘못된 접근입니다.')
+      })
+    },
+    routeUser() {
+      this.$router.push('/user').catch( () => {
+        alert('잘못된 접근입니다.')
+      })
+    },
+    routeDashboard() {
+      this.$router.push('/dashboard').catch( () => {
+        alert('잘못된 접근입니다.')
+      })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped></style>
+<!-- v-if="tokenUserRole !== '팀원'" -->

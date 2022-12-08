@@ -13,23 +13,28 @@ const routes = [
     children: [
       {
         path: '/home',
-        component: () => import('../views/Home.vue')
+        component: () => import('../views/Home.vue'),
+        meta: { permission: true }
       },
       {
         path: '/dashboard',
-        component: () => import('../views/dashboard')
+        component: () => import('../views/dashboard'),
+        meta: { permission: true }
       },
       {
         path: '/department',
-        component: () => import('../views/department')
+        component: () => import('../views/department'),
+        meta: { permission: false }
       },
       {
         path: '/user',
-        component: () => import('../views/user')
+        component: () => import('../views/user'),
+        meta: { permission: false }
       },
       {
         path: '/edukit',
-        component: () => import('../views/edukit')
+        component: () => import('../views/edukit'),
+        meta: { permission: true }
       }
     ]
   },
@@ -40,12 +45,12 @@ const routes = [
       {
         path: '/auth/login',
         component: () => import('../views/auth/login'),
-        meta: { header: false, noLogin: true }
+        meta: { header: false, noLogin: true, permission: true }
       },
       {
         path: '/auth/logout',
         component: () => import('../views/auth/logout'),
-        meta: { header: false, noLogin: true }
+        meta: { header: false, noLogin: true, permission: true }
       }
     ]
   },
@@ -63,9 +68,9 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  // console.log('router.beforeEach', to, from)
 
   const noLogin = to.meta.noLogin // 이동할 페이지에서 로그인 허용여부 확인
+  const permission = to.meta.permission // 이동할 페이지에서 권한 확인
 
   if (noLogin === true) {
     // 로그인이 필요없는 페이지는 그냥 이동
@@ -101,6 +106,23 @@ router.beforeEach(async (to, from, next) => {
     } catch (err) {
       // 토큰 추출이 실패한 경우에 대한 처리
       next('/auth/login') // 로그인 페이지로 이동
+    }
+  }
+
+
+  if (permission === true) {
+    next()
+  } else {
+    const tokenUser = store.getters['TokenUser']
+    // 유저의 role을 확인하여 페이지 이동을 판단한다
+    try {
+      if (tokenUser.role == "팀장") {
+        next() // admin이나 팀장은 이동하던 페이지로 이동
+      } else {
+        next('/') // 팀원은 홈으로 이동
+      }
+    } catch (err) {
+      next('/') // 홈으로 이동
     }
   }
 })
