@@ -14,18 +14,24 @@
               <b-button variant="primary" :disabled="loading" @click="onSubmit"
                 ><b-spinner v-if="loading" small></b-spinner> 로그인</b-button
               >
+              <b-button variant="link" @click="onClickAddNew">회원가입</b-button>
             </b-form-group>
           </b-card>
         </b-col>
       </b-row>
     </div>
+    <signupform />
   </div>
 </template>
 
 <script>
 import jwtDecode from 'jwt-decode'
+import signupform from './signupform.vue'
 
 export default {
+  components: {
+    signupform: signupform
+  },
   data() {
     return {
       userid: null,
@@ -41,9 +47,35 @@ export default {
     },
     error() {
       return this.$store.getters.TokenError
-    }
+    },
+    insertedResult() {
+      return this.$store.getters.UserInsertedResult
+    },
   },
   watch: {
+    insertedResult(value) {
+      // 회원가입 후 처리
+
+      if (value !== null) {
+        if (value > 0) {
+          // 회원가입이 성공한 경우
+
+          // 메세지 출력
+          this.$bvToast.toast('회원가입 되었습니다. 관리자의 승인을 기다리세요.', {
+            title: 'SUCCESS',
+            variant: 'success',
+            solid: true
+          })
+        } else {
+          // 회원가입이 실패한 경우
+          this.$bvToast.toast('회원가입이 실패하였습니다.', {
+            title: 'ERROR',
+            variant: 'danger',
+            solid: true
+          })
+        }
+        }
+      },
     tokenUser(value) {
       if (value && value.id && value.id > 0) {
         // 로그인이 완료된 상황
@@ -51,13 +83,26 @@ export default {
       }
     },
     error(errValue) {
+      console.log(errValue.response.status)
       if (errValue !== null) {
         // 메세지 출력
-        this.$bvToast.toast('아이디/비밀번호를 확인해 주세요.', {
+
+        // '대기' 상태인 경우 메세지 출력
+        if (errValue.response.status != 500) {
+          this.$bvToast.toast('관리자의 승인이 필요합니다.', {
+            title: '관리자 승인 필요',
+            variant: 'danger',
+            solid: true
+          })
+
+        // 아이디/비밀번호가 실패했을 경우 메세지 출력
+        } else {
+          this.$bvToast.toast('아이디/비밀번호를 확인해 주세요.', {
           title: '로그인 에러',
           variant: 'danger',
           solid: true
-        })
+          })
+        }
       }
     }
   },
@@ -81,6 +126,13 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('authLogin', { userid: this.userid, password: this.password })
+    },
+    onClickAddNew() {
+      // 1. 상세 정보 초기화
+      this.$store.dispatch('actUserInit')
+
+      // 2. 모달 출력
+      this.$bvModal.show('modal-signup-inform')
     }
   }
 }

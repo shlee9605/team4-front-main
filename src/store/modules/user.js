@@ -70,7 +70,24 @@ export default {
           context.commit('setUserList', [])
         })
     },
-    // 등록
+    // 로그인페이지에서 회원가입
+    actUserSignUp(context, payload) {
+      context.commit('setInsertedResult', null)
+
+      /* RestAPI 호출 */
+      api
+        .post('/serverApi/auths/signup', payload)
+        .then(response => {
+          const insertedResult = response && response.data && response.data.id
+          context.commit('setInsertedResult', insertedResult)
+        })
+        .catch(error => {
+          // 에러인 경우 처리
+          console.error('UserInsert.error', error)
+          context.commit('setInsertedResult', -1)
+        })
+    },
+    // 유저목록에서 신규 등록
     actUserInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)

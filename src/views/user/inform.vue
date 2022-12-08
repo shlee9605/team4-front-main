@@ -67,10 +67,10 @@ export default {
         createdAt: null
       },
       userRole: {
-        default: 'member', // 기본값
+        default: '팀원', // 기본값
         options: [
-          { value: 'leader', text: '팀장' },
-          { value: 'member', text: '팀원' }
+          { value: '팀장', text: '팀장' },
+          { value: '팀원', text: '팀원' }
         ]
       }
     }
