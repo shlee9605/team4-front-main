@@ -52,7 +52,6 @@ export default {
   actions: {
     // 부서 리스트 조회
     actDepartmentList(context, payload) {
-
       /* RestAPI 호출 */
       api
         .get('/serverApi/departments', { params: payload })
@@ -77,7 +76,6 @@ export default {
           const insertedResult = response && response.data && response.data.id
           context.commit('setInsertedResult', insertedResult)
           console.log(insertedResult)
-          
         })
         .catch(error => {
           console.error('DepartmentInsert.error', error)
@@ -96,7 +94,7 @@ export default {
     actDepartmentInfo(context, payload) {
       // 상태값 초기화
       context.commit('setDepartment', { ...stateInit.Department })
-      
+
       /* RestAPI 호출 */
       api
         .get(`/serverApi/departments/${payload}`)

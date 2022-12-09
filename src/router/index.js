@@ -73,7 +73,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-
   const noLogin = to.meta.noLogin // 이동할 페이지에서 로그인 허용여부 확인
   const permission = to.meta.permission // 이동할 페이지에서 권한 확인
 
@@ -114,14 +113,13 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 
-
   if (permission === true) {
     next()
   } else {
     const tokenUser = store.getters['TokenUser']
     // 유저의 role을 확인하여 페이지 이동을 판단한다
     try {
-      if (tokenUser.role == "팀장" || tokenUser.role == "admin") {
+      if (tokenUser.role == '팀장' || tokenUser.role == 'admin') {
         next() // admin이나 팀장은 이동하던 페이지로 이동
       } else {
         next('/') // 팀원은 홈으로 이동

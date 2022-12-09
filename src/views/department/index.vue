@@ -50,7 +50,7 @@ export default {
         { key: 'code', label: '부서코드' },
         { key: 'createdAt', label: '생성일' },
         { key: 'updateBtn', label: '수정' },
-        { key: 'deleteBtn', label: '삭제'}
+        { key: 'deleteBtn', label: '삭제' }
       ],
       search: {
         name: null
@@ -89,7 +89,6 @@ export default {
           // 2. 리스트 재검색
           this.searchDepartmentList()
         } else {
-
           // 등록이 실패한 경우
           this.$bvToast.toast('등록이 실패하였습니다.', {
             title: 'ERROR',
@@ -183,7 +182,7 @@ export default {
     onClickDelete(id) {
       // 삭제
       this.$bvModal.msgBoxConfirm('삭제 하시겠습니까?').then(value => {
-        if(value) {
+        if (value) {
           this.$store.dispatch('actDepartmentDelete', id)
         }
       })
