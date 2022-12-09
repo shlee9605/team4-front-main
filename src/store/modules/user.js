@@ -5,7 +5,7 @@ const stateInit = {
   User: {
     Department: {
       id: null,
-      name: null,
+      name: null
     },
     id: null,
     departmentId: null,
