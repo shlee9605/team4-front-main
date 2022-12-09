@@ -8,9 +8,8 @@
           <b-col>
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
               <b-avatar size="150px">
-                <img class="img-fluid" :src="getImgUrl" :alt="'https://placekitten.com/300/300'" />
+                <img class="img-fluid" :src="getImgUrl" />
               </b-avatar>
-              <span class="font-weight-bold">{{ this.profileUser.name }}</span>
             </div>
 
             <b-col>
@@ -21,7 +20,8 @@
                 </b-form-group>
 
                 <b-form-group label="부서" label-for="department" label-cols="3">
-                  <b-form-input id="department" readonly v-model="profileUser.Department.name"></b-form-input>
+                  <b-form-input v-if="getDepartmentName" id="department" readonly v-model="profileUser.Department.name"></b-form-input>
+                  <b-form-input v-else id="department" readonly></b-form-input>
                 </b-form-group>
                 <b-form-group label="권한" label-for="role" label-cols="3">
                   <b-form-input id="role" readonly v-model="profileUser.role"></b-form-input>
@@ -106,6 +106,11 @@ export default {
       if (this.profileUser.img !== null) {
         return `${process.env.VUE_APP_SERVER}/uploads/${this.profileUser.img}`
       }
+    },
+    getDepartmentName() {
+        if (this.profileUser.Department !== null) {
+            return this.profileUser.Department.name
+        }
     }
   },
   watch: {
@@ -145,12 +150,12 @@ export default {
   methods: {
     // 정보 수정
     onClickEdit() {
-      console.log(this.editToggle)
       console.log(this.profileUser)
 
       // 수정 활성화
       if (this.editToggle === true) {
         console.log('update active')
+        
         this.$store.dispatch('actProfileUserInputMode', 'update')
 
         // 수정 비활성화
