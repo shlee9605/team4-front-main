@@ -172,6 +172,7 @@ class Event {
 
     resetButton.addEventListener('click', () => {
       resetButton.style.color = 'red'
+      startButton.style.color = 'green'
       console.log('reset')
       this.sendMQTT(publish_topic, { tagId: '8', value: '0' })
     })
