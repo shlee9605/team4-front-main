@@ -3,12 +3,17 @@ import api from '../apiUtil'
 // 초기값 선언
 const stateInit = {
   User: {
+    Department: {
+      id: null,
+      name: null
+    },
     id: null,
     departmentId: null,
     name: null,
     userid: null,
     password: null,
     role: '대기',
+    img: null,
     email: null,
     phone: null,
     updatedPwDate: null,
@@ -141,6 +146,7 @@ export default {
         .put(`/serverApi/users/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
+          console.log(response.data.updatedCount)
           context.commit('setUpdatedResult', updatedResult)
         })
         .catch(error => {

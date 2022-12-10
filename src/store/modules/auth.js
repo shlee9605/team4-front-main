@@ -6,6 +6,7 @@ const stateInit = {
     id: null,
     userid: null,
     name: null,
+    img: null,
     role: null,
     iat: null,
     exp: null

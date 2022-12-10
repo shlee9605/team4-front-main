@@ -60,6 +60,7 @@ export default {
         name: null,
         userid: null,
         password: null,
+        img: null,
         role: null,
         email: null,
         phone: null,
@@ -125,6 +126,7 @@ export default {
 
       // 2. 수정인 경우
       if (this.inputMode === 'update') {
+        console.log(this.user)
         this.$store.dispatch('actUserUpdate', this.user) // 수정 실행
       }
     },
