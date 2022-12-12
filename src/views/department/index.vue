@@ -157,7 +157,6 @@ export default {
   methods: {
     searchDepartmentList() {
       this.$store.dispatch('actDepartmentList', this.search)
-      console.log(this.search)
     },
     onClickAddNew() {
       // 1. 입력모드 설정

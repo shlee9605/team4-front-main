@@ -34,7 +34,25 @@ const routes = [
       {
         path: '/edukit',
         component: () => import('../views/edukit'),
-        meta: { permission: true }
+        meta: { permission: true },
+        children: [
+          {
+            path: '/edukit/1',
+            component: () => import('../views/edukit/edukit1'),
+          },
+          // {
+          //   path: '/edukit/2',
+          //   component: () => import('../views/edukit/edukit2'),
+          // },
+          // {
+          //   path: '/edukit/3',
+          //   component: () => import('../views/edukit/edukit3'),
+          // },
+          // {
+          //   path: '/edukit',
+          //   component: () => import('../views/edukit/edukit4'),
+          // }
+        ]
       },
       {
         path: '/profile',

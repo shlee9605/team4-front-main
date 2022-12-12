@@ -29,7 +29,7 @@ export default {
     InsertedResult: null,
     UpdatedResult: null,
     DeletedResult: null,
-    InputMode: null // 입력모드 (등록: insert, 수정: update)
+    InputMode: null // 입력모드 (등록: insert, 수정: update, 비번수정 : editPwd)
   },
   getters: {
     UserList: state => state.UserList,
@@ -140,13 +140,11 @@ export default {
     actUserUpdate(context, payload) {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
-
       /* RestAPI 호출 */
       api
         .put(`/serverApi/users/${payload.id}`, payload)
         .then(response => {
           const updatedResult = response && response.data && response.data.updatedCount
-          console.log(response.data.updatedCount)
           context.commit('setUpdatedResult', updatedResult)
         })
         .catch(error => {
