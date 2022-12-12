@@ -26,7 +26,7 @@ class Event{
         raycast.layers.set(1);
         const pointer = new THREE.Vector2();
         
-        renderer.domElement.addEventListener('pointerdown', event =>{
+        renderer.domElement.addEventListener('pointerdown', event =>{ //pointerdown , pointermove, dbclick, contextmenu, dbclick
             const xy = calculate.ray(event, renderer)
             const x=xy.x;
             const y=xy.y;
@@ -187,34 +187,35 @@ class Event{
 
     //Recieve from PLC
     receiveMQTT(hostname, port, path, topic, status, edukit){
-        const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
-        this.client = mqtt.connect({
-            clientId,
-            protocol: "ws",
-            reconnectPeriod: 1000,
-            hostname: hostname,
-            port: port,
-            path: path,
-        });
+      if(this.client) this.client.end();
+      const clientId = `mqtt_${Math.random().toString(16).slice(3)}`
+      this.client = mqtt.connect({
+          clientId,
+          protocol: "ws",
+          reconnectPeriod: 1000,
+          hostname: hostname,
+          port: port,
+          path: path,
+      });
 
-        this.client.on('connect', () => {
-            console.log("MQTT Connected");
-            status.color = "green";
+      this.client.on('connect', () => {
+          console.log("MQTT Connected");
+          status.color = "green";
 
-            this.client.subscribe([topic], () => {
-                console.log(`토픽 연결 완료: ${topic}`);
-            });
+          this.client.subscribe([topic], () => {
+              console.log(`토픽 연결 완료: ${topic}`);
+          });
 
-            this.client.on('message', (topic, payload)=>{
-                // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
-                let message = JSON.parse(payload);
-                let data = message.Wrapper.filter((p)=>p.tagId === "21" || p.tagId === "22");
-                data = data.map((p)=>parseInt(p.value));
+          this.client.on('message', (topic, payload)=>{
+              // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
+              let message = JSON.parse(payload);
+              let data = message.Wrapper.filter((p)=>p.tagId === "21" || p.tagId === "22");
+              data = data.map((p)=>parseInt(p.value));
 
-                edukit["yAxis"] = data[0];
-                edukit["xAxis"] = data[1];
-            })
-        });
+              edukit["yAxis"] = data[0];
+              edukit["xAxis"] = data[1];
+          })
+      });
     }
 
     ButtonConnect(start, stop, reset){
