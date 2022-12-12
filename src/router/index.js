@@ -32,31 +32,9 @@ const routes = [
         meta: { permission: false }
       },
       {
-        path: '/edukit',
+        path: '/edukit/:depid/:devid',
         component: () => import('../views/edukit'),
-        meta: { permission: true },
-        children: [
-          {
-            path: '/edukit/1',
-            component: () => import('../views/edukit/edukit1'),
-            meta: { permission: true },
-          },
-          {
-            path: '/edukit/2',
-            component: () => import('../views/edukit/edukit2'),
-            meta: { permission: true },
-          },
-          {
-            path: '/edukit/3',
-            component: () => import('../views/edukit/edukit3'),
-            meta: { permission: true },
-          },
-          {
-            path: '/edukit/4',
-            component: () => import('../views/edukit/edukit4'),
-            meta: { permission: true },
-          },
-        ]
+        meta: { permission: true }
       },
 
       {

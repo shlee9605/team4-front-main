@@ -7,39 +7,45 @@
         <b-row>
           <b-col>
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-
               <div class="avatar-upload">
                 <div class="avatar-edit">
                   <form action="" method="post" id="form-image">
-                    <input type='file' id="imageUpload" accept="image/*" @change="inputImg"/>
+                    <input type="file" id="imageUpload" accept="image/*" @change="inputImg" />
                     <label for="imageUpload"></label>
                   </form>
                 </div>
               </div>
 
               <b-avatar class="profile-user-img" size="150px">
-                <img class="img-fluid" :src="getImgUrl"/>
+                <img class="img-fluid" :src="getImgUrl" />
               </b-avatar>
-
             </div>
 
             <b-col>
               <div>
                 <b-form-group label="이름" label-for="name" label-cols="3">
                   <b-input-group>
-                      <b-form-input v-if="this.inputMode === 'editName'" id="name" v-model="profileUser.name"></b-form-input>
-                      <b-form-input v-else id="name" readonly v-model="profileUser.name"></b-form-input>
-                      <b-input-group-append>
-                        <b-button :pressed.sync="editBtn.name" title="수정" @click="editName">
-                          <b-icon icon="pencil-fill"></b-icon>
-                        </b-button>
-                      </b-input-group-append>
+                    <b-form-input
+                      v-if="this.inputMode === 'editName'"
+                      id="name"
+                      v-model="profileUser.name"
+                    ></b-form-input>
+                    <b-form-input v-else id="name" readonly v-model="profileUser.name"></b-form-input>
+                    <b-input-group-append>
+                      <b-button :pressed.sync="editBtn.name" title="수정" @click="editName">
+                        <b-icon icon="pencil-fill"></b-icon>
+                      </b-button>
+                    </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
-                
 
                 <b-form-group label="부서" label-for="department" label-cols="3">
-                  <b-form-input v-if="getDepartmentName" id="department" readonly v-model="profileUser.Department.name"></b-form-input>
+                  <b-form-input
+                    v-if="getDepartmentName"
+                    id="department"
+                    readonly
+                    v-model="profileUser.Department.name"
+                  ></b-form-input>
                   <b-form-input v-else id="department" readonly></b-form-input>
                 </b-form-group>
 
@@ -63,12 +69,20 @@
                       id="password"
                       v-model="profileUser.password"
                       type="password"
-                    >password</b-form-input>
-                    <b-form-input v-else id="password" readonly v-model="profileUser.password" placeholder="●●●●●●●" type="password"></b-form-input>
+                      >password</b-form-input
+                    >
+                    <b-form-input
+                      v-else
+                      id="password"
+                      readonly
+                      v-model="profileUser.password"
+                      placeholder="●●●●●●●"
+                      type="password"
+                    ></b-form-input>
                     <b-input-group-append>
-                          <b-button :pressed.sync="editBtn.password" title="수정" @click="editPwd">
-                            <b-icon icon="pencil-fill"></b-icon>
-                          </b-button>
+                      <b-button :pressed.sync="editBtn.password" title="수정" @click="editPwd">
+                        <b-icon icon="pencil-fill"></b-icon>
+                      </b-button>
                     </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
@@ -82,9 +96,9 @@
                     ></b-form-input>
                     <b-form-input v-else id="email" readonly v-model="profileUser.email"></b-form-input>
                     <b-input-group-append>
-                        <b-button :pressed.sync="editBtn.email" title="수정" @click="editEmail">
-                          <b-icon icon="pencil-fill"></b-icon>
-                        </b-button>
+                      <b-button :pressed.sync="editBtn.email" title="수정" @click="editEmail">
+                        <b-icon icon="pencil-fill"></b-icon>
+                      </b-button>
                     </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
@@ -98,9 +112,9 @@
                     ></b-form-input>
                     <b-form-input v-else id="phone" readonly v-model="profileUser.phone"></b-form-input>
                     <b-input-group-append>
-                        <b-button :pressed.sync="editBtn.phone" title="수정" @click="editPhone">
-                          <b-icon icon="pencil-fill"></b-icon>
-                        </b-button>
+                      <b-button :pressed.sync="editBtn.phone" title="수정" @click="editPhone">
+                        <b-icon icon="pencil-fill"></b-icon>
+                      </b-button>
                     </b-input-group-append>
                   </b-input-group>
                 </b-form-group>
@@ -118,10 +132,10 @@ export default {
   data() {
     return {
       editBtn: {
-        'name': false ,
-        'password': false,
-        'email': false,
-        'phone': false
+        name: false,
+        password: false,
+        email: false,
+        phone: false
       },
       profileUser: {
         Department: {
@@ -139,12 +153,12 @@ export default {
         phone: null,
         updatedPwDate: null,
         createdAt: null
-      },
+      }
     }
   },
   computed: {
     infoData() {
-       return this.$store.getters.ProfileUser
+      return this.$store.getters.ProfileUser
     },
     inputMode() {
       return this.$store.getters.ProfileInputMode
@@ -158,30 +172,30 @@ export default {
     getImgUrl() {
       if (this.profileUser.img == null) {
         // 유저에 저장된 프로필사진이 없을 경우 (기본사진)
-        return `${require("@/assets/user.png")}`
+        return `${require('@/assets/user.png')}`
         // 유저에 저장된 프로필사진이 있을 경우
-      } else if (this.profileUser.img !== null && (typeof this.profileUser.img != 'object')) {
-        return `${process.env.VUE_APP_SERVER}/uploads/${this.profileUser.img}` 
+      } else if (this.profileUser.img !== null && typeof this.profileUser.img != 'object') {
+        return `${process.env.VUE_APP_SERVER}/uploads/${this.profileUser.img}`
       }
     },
     getDepartmentName() {
-        if (this.profileUser.Department !== null) {
-            return this.profileUser.Department.name
-        }
+      if (this.profileUser.Department !== null) {
+        return this.profileUser.Department.name
+      }
     }
   },
   watch: {
     // 페이지가 열린 이후에 감지됨
     infoData(value) {
-        this.profileUser = { ...value }    
+      this.profileUser = { ...value }
     },
 
     // 수정 후 처리
     updatedResult(value) {
       if (value !== null) {
         setTimeout(() => {
-        this.$store.dispatch('actProfileUserInfo', this.tokenUserId)
-      }, 300)
+          this.$store.dispatch('actProfileUserInfo', this.tokenUserId)
+        }, 300)
 
         if (value > 0) {
           // 수정이 성공한 경우
@@ -192,11 +206,9 @@ export default {
             variant: 'success',
             solid: true
           })
-        
-        } else if (value === -1){
-          
+        } else if (value === -1) {
           // 수정이 실패한 경우
-          
+
           this.$bvToast.toast('수정 실패하였습니다.', {
             title: 'ERROR',
             variant: 'danger',
@@ -222,7 +234,7 @@ export default {
         // 입력된 값으로 수정
         this.$store.dispatch('actProfileUserUpdate', this.profileUser)
 
-      // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
+        // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
       } else if (this.inputMode !== 'editName') {
         this.$store.dispatch('actProfileUserInputMode', 'editName')
       }
@@ -232,11 +244,11 @@ export default {
       if (this.inputMode === 'editPwd') {
         // 입력모드를 읽기 모드로 설정
         this.$store.dispatch('actProfileUserInputMode', 'show')
-      
+
         // 입력된 값으로 수정
         this.$store.dispatch('actProfileUserUpdate', this.profileUser)
 
-      // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
+        // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
       } else if (this.inputMode !== 'editPwd') {
         this.$store.dispatch('actProfileUserInputMode', 'editPwd')
       }
@@ -247,11 +259,11 @@ export default {
       if (this.inputMode === 'editEmail') {
         // 입력모드를 읽기 모드로 설정
         this.$store.dispatch('actProfileUserInputMode', 'show')
-      
+
         // 입력된 값으로 수정
         this.$store.dispatch('actProfileUserUpdate', this.profileUser)
 
-      // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
+        // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
       } else if (this.inputMode !== 'editEmail') {
         this.$store.dispatch('actProfileUserInputMode', 'editEmail')
       }
@@ -262,22 +274,22 @@ export default {
       if (this.inputMode === 'editPhone') {
         // 입력모드를 읽기 모드로 설정
         this.$store.dispatch('actProfileUserInputMode', 'show')
-      
+
         // 입력된 값으로 수정
         this.$store.dispatch('actProfileUserUpdate', this.profileUser)
 
-      // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
+        // 2. 이름 수정 버튼 클릭시 수정 모드로 설정
       } else if (this.inputMode !== 'editPhone') {
         this.$store.dispatch('actProfileUserInputMode', 'editPhone')
       }
     },
     inputImg(e) {
-      let input = event.target;
+      let input = event.target
       // 이미지가 업로드 되었는지 확인
-      if(input.files && input.files[0]) {
+      if (input.files && input.files[0]) {
         this.profileUser.img = input.files[0]
         this.$store.dispatch('actProfileUserImgUpdate', this.profileUser)
-    }
+      }
     }
   }
 }
@@ -290,43 +302,43 @@ export default {
   margin: auto;
   margin-bottom: 20px;
 }
-  .avatar-edit {
-    position: absolute;
-    left: 35px;
-    z-index: 1;
-    top: 130px;
-    input {
-      display: none;
-      + label {
-        display: inline-block;
-        width: 38px;
-        height: 38px;
-        margin-bottom: 0;
-        border-radius: 100%;
-        background: #FFFFFF;
-        border: 1px solid #d2d6de;
-        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-        cursor: pointer;
-        font-weight: normal;
-        transition: all .2s ease-in-out;
-        &:hover {
-          background: #f1f1f1;
-          border-color: #d6d6d6;
-        }
-        &:after {
-          content: "\f030";
-          font-family: 'FontAwesome';
-          color: #337AB7;
-          position: absolute;
-          left: 0;
-          right: 0;
-          text-align: center;
-          line-height: 34px;
-          margin: auto;
-        }
+.avatar-edit {
+  position: absolute;
+  left: 35px;
+  z-index: 1;
+  top: 130px;
+  input {
+    display: none;
+    + label {
+      display: inline-block;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 0;
+      border-radius: 100%;
+      background: #ffffff;
+      border: 1px solid #d2d6de;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      cursor: pointer;
+      font-weight: normal;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+      }
+      &:after {
+        content: '\f030';
+        font-family: 'FontAwesome';
+        color: #337ab7;
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        line-height: 34px;
+        margin: auto;
       }
     }
   }
+}
 
 .btn.btn-secondary.active {
   background-color: #28a745;
@@ -350,5 +362,4 @@ export default {
 .input-group {
   flex-wrap: inherit;
 }
-
 </style>
