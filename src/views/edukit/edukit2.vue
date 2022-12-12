@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>개발부 기계 1</h1>
+    <h1>개발부 기계 2</h1>
     <div ref="webgl"></div>
   </div>
 </template>
