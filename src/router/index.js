@@ -39,21 +39,26 @@ const routes = [
           {
             path: '/edukit/1',
             component: () => import('../views/edukit/edukit1'),
+            meta: { permission: true },
           },
-          // {
-          //   path: '/edukit/2',
-          //   component: () => import('../views/edukit/edukit2'),
-          // },
-          // {
-          //   path: '/edukit/3',
-          //   component: () => import('../views/edukit/edukit3'),
-          // },
-          // {
-          //   path: '/edukit',
-          //   component: () => import('../views/edukit/edukit4'),
-          // }
+          {
+            path: '/edukit/2',
+            component: () => import('../views/edukit/edukit2'),
+            meta: { permission: true },
+          },
+          {
+            path: '/edukit/3',
+            component: () => import('../views/edukit/edukit3'),
+            meta: { permission: true },
+          },
+          {
+            path: '/edukit/4',
+            component: () => import('../views/edukit/edukit4'),
+            meta: { permission: true },
+          },
         ]
       },
+
       {
         path: '/profile',
         component: () => import('../views/profile'),
@@ -86,7 +91,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/',
   routes
 })
 
