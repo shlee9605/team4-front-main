@@ -26,7 +26,10 @@ export default {
     state: {
         ProfileUser: { ...stateInit.ProfileUser },
         UpdatedResult: null,
-        InputMode: null // 입력모드 (보기: show, 수정: update)
+        // 입력모드 (보기: show, 이름수정: editName,
+        //          비밀번호수정: editPwd, 이메일수정: editEmail,
+        //          전화번호수정: editPhone, 사진수정: editImg)
+        InputMode: null
     },
     getters: {
         ProfileUser: state => state.ProfileUser,
@@ -63,10 +66,12 @@ export default {
                 .get(`/serverApi/profile/${payload}`)
                 .then(response => {
                     const profileuser = response && response.data
+                    console.log(profileuser)
                     context.commit('setProfileUser', profileuser)
                 })
                 .catch(error => {
                     // 에러인 경우 처리
+                    console.log('get error')
                     console.error('ProfileUserInfo.error', error)
                     context.commit('setProfileUser', -1)
                 })
@@ -82,14 +87,36 @@ export default {
                 .put(`/serverApi/profile/${payload.id}`, payload)
                 .then(response => {
                     const updatedResult = response && response.data && response.data.updatedCount
-
+                    console.log('edited')
                     context.commit('setUpdatedResult', updatedResult)
                 })
                 .catch(error => {
                     // 에러인 경우 처리
+                    console.log('update error')
                     console.error('ProfileUserUpdate.error', error)
                     context.commit('setUpdatedResult', -1)
                 })
+        },
+        actProfileUserImgUpdate(context, payload) {
+            // 상태값 초기화
+            context.commit('setUpdatedResult', null)
+            const formData = new FormData();
+            formData.append('img', payload.img)
+            // for (let item of formData.entries()) {
+            //     console.log(item);
+            // }
+
+            /* RestAPI 호출 */
+            api
+                .put(`/serverApi/profile/uploads/${payload.id}`, formData)
+                .then(response => {
+                    const updatedResult = response && response.data && response.data.updatedCount
+                    context.commit('setUpdatedResult', updatedResult)
+                })
+                .catch(error => {
+                    console.log('pic error')
+                    console.error('ProfileUserImgUpdate.error', error)
+                });
         }
     }
 }
