@@ -142,7 +142,7 @@ class Resource {
     }
   }
 
-  setRotationAlign() { }
+  setRotationAlign() {}
 }
 
 export { Resource }

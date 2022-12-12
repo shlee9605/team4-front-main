@@ -5,6 +5,11 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
+          <!-- <div class="edukit-department" v-for="b in DepartmentList" :key="b.id">
+            <router-link :to="`/edukit/${b.id}`">
+              <div class="edukit-department-title">{{ b.code }}</div>
+            </router-link>
+          </div> -->
           <b-nav-item href="#" @click="$router.push('/edukit/1').catch(() => {})">개발부 기계1</b-nav-item>
           <b-nav-item href="#" @click="$router.push('/edukit/2').catch(() => {})">개발부 기계2</b-nav-item>
           <b-nav-item href="#" @click="$router.push('/edukit/3').catch(() => {})">본부 기계1</b-nav-item>
@@ -28,6 +33,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   computed: {
     isLoggedin() {
@@ -35,13 +41,17 @@ export default {
       if (this.$store.getters.TokenUser && this.$store.getters.TokenUser.id > 0) {
         login = true
       }
-
       return login
     },
     tokenUserName() {
       return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
-    }
+    },
+
+    ...mapState({
+      DepartmentList: 'DepartmentList'
+    })
   },
+
   methods: {
     onClick(path) {
       this.$router.push(path)

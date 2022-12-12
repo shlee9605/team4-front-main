@@ -2,7 +2,12 @@
   <div>
     <b-modal id="modal-user-inform" :title="getTitle" @ok="onSubmit">
       <div>
-        <b-form-group v-if="inputMode === 'update' || inputMode === 'editPwd'" label="id" label-for="code" label-cols="3">
+        <b-form-group
+          v-if="inputMode === 'update' || inputMode === 'editPwd'"
+          label="id"
+          label-for="code"
+          label-cols="3"
+        >
           <b-form-input id="id" v-model="user.id" disabled></b-form-input>
         </b-form-group>
 
@@ -50,7 +55,12 @@
           <b-form-input id="phone" v-model="user.phone"></b-form-input>
         </b-form-group>
 
-        <b-form-group v-if="inputMode === 'update' || inputMode === 'editPwd'" label="등록일" label-for="createdAt" label-cols="3">
+        <b-form-group
+          v-if="inputMode === 'update' || inputMode === 'editPwd'"
+          label="등록일"
+          label-for="createdAt"
+          label-cols="3"
+        >
           <b-form-input id="createdAt" :value="getCreatedAt" disabled></b-form-input>
         </b-form-group>
       </div>
