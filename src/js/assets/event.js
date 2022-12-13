@@ -14,9 +14,9 @@ class Event {
     ////config////
     const publish_topic = process.env.VUE_APP_PUBLISH_TOPIC
     const subscribe_topic = process.env.VUE_APP_SUBSCRIBE_TOPIC
-    const port = process.env.VUE_APP_PORT1
-    const host = process.env.VUE_APP_HOST1
-    const path = process.env.VUE_APP_PATH1
+    const port = process.env.VUE_APP_PORT2
+    const host = process.env.VUE_APP_HOST2
+    const path = process.env.VUE_APP_PATH2
 
     const raycast = new THREE.Raycaster()
     raycast.layers.set(1)
