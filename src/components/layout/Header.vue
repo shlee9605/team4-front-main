@@ -6,7 +6,8 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item href="#" v-for="dep in this.departmentList" @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">
-            {{ `${dep.name} 기계` }}</b-nav-item>
+            {{ `${dep.name} 기계` }}</b-nav-item
+          >
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

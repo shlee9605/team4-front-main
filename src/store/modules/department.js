@@ -72,7 +72,7 @@ export default {
     actDepartmentInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-      const newTopic = payload.topic.split(",") // ['a', ' b'] array형식으로 반환
+      const newTopic = payload.topic.split(',') // ['a', ' b'] array형식으로 반환
 
       // 빈 스페이스가 있을 경우 없애기 위한 전처리
       let newTopicTrim = []

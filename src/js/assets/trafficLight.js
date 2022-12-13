@@ -3,48 +3,47 @@ import * as THREE from 'three'
 class TrafficLight {
   constructor() {
     this.trafficLight1 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0.9, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0.9, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x003300, specular: 0x00ff00, shininess: 100 })
     )
     this.trafficLight2 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0.9, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0.9, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x996600, specular: 0x00ff00, shininess: 100 })
     )
     this.trafficLight3 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0.9, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0.9, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x660000, specular: 0xcc000, shininess: 100 })
     )
     this.pillarTop1 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0.9, 0.3, 100),
+      new THREE.CylinderGeometry(0.9, 0.9, 0.3, 20),
       new THREE.MeshPhongMaterial({ color: 0xffffcc, specular: 0x00ff00, shininess: 100 })
     )
     this.pillarTop2 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0.6, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0.6, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0xffffcc, specular: 0x00ff00, shininess: 100 })
     )
     this.pillarFloor = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.7, 0.9, 1, 100),
+      new THREE.CylinderGeometry(0.7, 0.9, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x666666, specular: 0x00ff00, shininess: 100 })
     )
     this.pillar = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.3, 0.3, 10, 100),
+      new THREE.CylinderGeometry(0.3, 0.3, 10, 20),
       new THREE.MeshPhongMaterial({ color: 0x666666, specular: 0x00ff00, shininess: 100 })
     )
     // 밝은 초록 00FF00 밝은 빨강 FF0000 노랑 FFFF00
 
     this.statusLight1 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x770000, specular: 0x00ff00, shininess: 100 })
     )
     this.statusLight2 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x770000, specular: 0x00ff00, shininess: 100 })
     )
     this.statusLight3 = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.9, 0, 1, 100),
+      new THREE.CylinderGeometry(0.9, 0, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x770000, specular: 0x00ff00, shininess: 100 })
     )
-
 
     this.trafficLight()
     this.statusLight()
