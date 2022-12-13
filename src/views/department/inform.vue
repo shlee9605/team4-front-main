@@ -13,8 +13,22 @@
           <b-form-input id="code" v-model="department.code"></b-form-input>
         </b-form-group>
         <b-form-group label="상세설명" label-for="description" label-cols="3">
-          <b-form-textarea id="description" v-model="department.description" rows="5" />
+          <b-form-textarea id="description" v-model="department.description" rows="3" />
         </b-form-group>
+
+        <b-form-group label="HOST" label-for="host" label-cols="3">
+          <b-form-input id="host" v-model="department.host"></b-form-input>
+        </b-form-group>
+        <b-form-group label="PORT" label-for="port" label-cols="3">
+          <b-form-input id="port" v-model="department.port"></b-form-input>
+        </b-form-group>
+        <b-form-group label="PATH" label-for="path" label-cols="3">
+          <b-form-input id="path" v-model="department.path"></b-form-input>
+        </b-form-group>
+        <b-form-group label="TOPIC" label-for="topic" label-cols="3" description="2개 이상 작성 시 콤마(,)로 구분하세요.">
+          <b-form-input id="topic" v-model="department.topic"></b-form-input>
+        </b-form-group>
+
         <b-form-group v-if="inputMode === 'update'" label="등록일" label-for="createdAt" label-cols="3">
           <b-form-input id="createdAt" :value="getCreatedAt" disabled></b-form-input>
         </b-form-group>
@@ -32,6 +46,10 @@ export default {
         name: null,
         code: null,
         description: null,
+        host: null,
+        port: null,
+        path: null,
+        topic: null,
         createdAt: null
       }
     }
