@@ -62,6 +62,10 @@ class Scene {
     this.scene.add(this.trafficLight.statusLight3)
 
     this.scene.add(this.chips.chip1)
+    this.scene.add(this.chips.chip2)
+    this.scene.add(this.chips.chip3)
+    this.scene.add(this.chips.chip4)
+    this.scene.add(this.chips.chip5)
   }
 
   setGrid() {

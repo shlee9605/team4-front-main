@@ -273,6 +273,24 @@ class Event {
           }
 
 
+          //칩 x축 이동
+          let count = 0 
+          if (data[1].value == true && data[7].value == false && count == 0) {
+            
+            var start = setInterval(() => {
+              scene.chips.chip1.position.x += 1.2;
+              if (data[7].value == true) {
+                clearInterval(start)
+              }
+            }, 1000)
+          } 
+          else if (data[7].value == true) {
+            count = 0
+            clearInterval(start)
+            scene.chips.chip1.position.x = -15
+          }
+          
+
           data = data.map(p => parseInt(p.value))
           edukit['yAxis'] = data[0]
           edukit['xAxis'] = data[1]
