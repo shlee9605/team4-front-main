@@ -9,25 +9,6 @@ const statehandler = {
     }
   },
 
-  basket_state(mech1, prev_mech1, basket, cup_state, data) {
-    if (mech1 == true && prev_mech1 == false) {
-      basket.innerText = '판별 중...'
-      cup_state = true
-    }
-
-    if (cup_state == true) {
-      if (data[2].value == true) {
-        basket.innerText = '흰색'
-        basket.style.color = 'blue'
-        cup_state == false
-      } else if (cup_state == true && mech1 == false && prev_mech1 == true) {
-        basket.innerText = '빨간색'
-        basket.style.color = 'red'
-        cup_state == false
-      }
-    }
-  },
-
   mech1_state(data, scene) {
     if (data.value == true) {
       scene.trafficLight.statusLight1.material.color.set(0x00ff00)
