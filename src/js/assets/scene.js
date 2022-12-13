@@ -57,11 +57,11 @@ class Scene {
     this.scene.add(this.trafficLight.pillarTop2)
     this.scene.add(this.trafficLight.pillarFloor)
     this.scene.add(this.trafficLight.pillar)
+
     this.scene.add(this.trafficLight.statusLight1)
     this.scene.add(this.trafficLight.statusLight2)
     this.scene.add(this.trafficLight.statusLight3)
 
-    this.scene.add(this.chips.chip1)
   }
 
   setGrid() {
