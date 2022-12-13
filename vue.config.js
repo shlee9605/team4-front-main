@@ -2,6 +2,7 @@ const { VUE_APP_SERVER } = process.env
 const path = require('path')
 
 module.exports = {
+  runtimeCompiler: true,
   chainWebpack: config => {
     config.resolve.alias.set('@', path.resolve(__dirname, './src/'))
   },

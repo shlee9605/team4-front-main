@@ -5,15 +5,8 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <!-- <div class="edukit-department" v-for="b in DepartmentList" :key="b.id">
-            <router-link :to="`/edukit/${b.id}`">
-              <div class="edukit-department-title">{{ b.code }}</div>
-            </router-link>
-          </div> -->
-          <b-nav-item href="#" @click="$router.push('/edukit/1').catch(() => {})">개발부 기계1</b-nav-item>
-          <b-nav-item href="#" @click="$router.push('/edukit/2').catch(() => {})">개발부 기계2</b-nav-item>
-          <b-nav-item href="#" @click="$router.push('/edukit/3').catch(() => {})">본부 기계1</b-nav-item>
-          <b-nav-item href="#" @click="$router.push('/edukit/4').catch(() => {})">본부 기계2</b-nav-item>
+          <b-nav-item href="#" v-for="dep in this.departmentList" @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">
+            {{ `${dep.name} 기계` }}</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -33,7 +26,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
   computed: {
     isLoggedin() {
@@ -46,15 +38,18 @@ export default {
     tokenUserName() {
       return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
     },
-
-    ...mapState({
-      DepartmentList: 'DepartmentList'
-    })
+    departmentList() {
+      return this.$store.getters.DepartmentList // 부서정보 가져오기
+    }
   },
-
+  created() {
+    this.$store.dispatch('actDepartmentList') // 부서정보 조회
+  },
   methods: {
     onClick(path) {
-      this.$router.push(path)
+      this.$router.push(path).catch(() => {
+        alert('잘못된 접근입니다.')
+      })
     }
   }
 }
