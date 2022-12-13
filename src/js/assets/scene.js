@@ -7,7 +7,6 @@ import { Camera } from './camera'
 import { Light } from './light'
 import { Button } from './button'
 import { TrafficLight } from './trafficLight'
-import { Chips } from './chips'
 
 class Scene {
   constructor(file = null) {
@@ -18,7 +17,6 @@ class Scene {
     this.light = new Light()
     this.button = new Button()
     this.trafficLight = new TrafficLight()
-    this.chips = new Chips()
     this.setScene()
     this.setMesh()
     this.setGrid()
