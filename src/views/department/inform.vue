@@ -25,7 +25,12 @@
         <b-form-group label="PATH" label-for="path" label-cols="3">
           <b-form-input id="path" v-model="department.path"></b-form-input>
         </b-form-group>
-        <b-form-group label="TOPIC" label-for="topic" label-cols="3" description="2개 이상 작성 시 콤마(,)로 구분하세요.">
+        <b-form-group
+          label="TOPIC"
+          label-for="topic"
+          label-cols="3"
+          description="2개 이상 작성 시 콤마(,)로 구분하세요."
+        >
           <b-form-input id="topic" v-model="department.topic"></b-form-input>
         </b-form-group>
 

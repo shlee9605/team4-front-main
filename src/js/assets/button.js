@@ -8,23 +8,23 @@ class Button {
     )
 
     this.button9 = new THREE.Mesh(
-      new THREE.CylinderGeometry(1, 1, 1, 100),
+      new THREE.CylinderGeometry(1, 1, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x007700, specular: 0x00ff00, shininess: 100 })
     )
     this.button12 = new THREE.Mesh(
-      new THREE.CylinderGeometry(1, 1, 1, 100),
+      new THREE.CylinderGeometry(1, 1, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x007700, specular: 0x00ff00, shininess: 100 })
     )
     this.button10 = new THREE.Mesh(
-      new THREE.CylinderGeometry(1, 1, 1, 100),
+      new THREE.CylinderGeometry(1, 1, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x007700, specular: 0x00ff00, shininess: 100 })
     )
     this.button13 = new THREE.Mesh(
-      new THREE.CylinderGeometry(1, 1, 1, 100),
+      new THREE.CylinderGeometry(1, 1, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x007700, specular: 0x00ff00, shininess: 100 })
     )
     this.button11 = new THREE.Mesh(
-      new THREE.CylinderGeometry(1, 1, 1, 100),
+      new THREE.CylinderGeometry(1, 1, 1, 20),
       new THREE.MeshPhongMaterial({ color: 0x007700, specular: 0x00ff00, shininess: 100 })
     )
 
