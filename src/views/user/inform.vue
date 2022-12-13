@@ -123,16 +123,13 @@ export default {
     // 모달이 열린 이후에 감지됨
     infoData(value) {
       this.user = { ...value }
-
       this.setDefaultValues() // 기본값 세팅
     }
   },
   created() {
     // 모달이 최초 열릴때 감지됨
     this.user = { ...this.infoData }
-
     this.setDefaultValues() // 기본값 세팅
-
     this.$store.dispatch('actDepartmentList') // 부서정보 조회
   },
   methods: {

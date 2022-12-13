@@ -5,6 +5,7 @@ import store from '../store'
 
 Vue.use(VueRouter)
 
+
 const routes = [
   {
     path: '/',
@@ -32,11 +33,10 @@ const routes = [
         meta: { permission: false }
       },
       {
-        path: '/edukit/:depid/:devid',
-        component: () => import('../views/edukit'),
+        path: '/edukit/:depCode/:depTopic',
+        component: () => import('../views/edukit/index.vue'),
         meta: { permission: true }
       },
-
       {
         path: '/profile',
         component: () => import('../views/profile'),
