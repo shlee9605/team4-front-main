@@ -80,7 +80,7 @@ export default {
         const eachNewTopic = newTopic[indx].trim()
         newTopicTrim.push(eachNewTopic)
       }
-      payload.topic = newTopicTrim.toString()
+      payload.topic = newTopicTrim.toString() // 백에 보내주기 위해 string형식으로 변환
 
       /* RestAPI 호출 */
       api
@@ -124,6 +124,16 @@ export default {
     actDepartmentUpdate(context, payload) {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
+
+      const newTopic = payload.topic.split(",") // ['a', ' b'] array형식으로 반환
+
+      // 빈 스페이스가 있을 경우 없애기 위한 전처리
+      let newTopicTrim = []
+      for (const indx in newTopic) {
+        const eachNewTopic = newTopic[indx].trim()
+        newTopicTrim.push(eachNewTopic)
+      }
+      payload.topic = newTopicTrim.toString() // 백에 보내주기 위해 string형식으로 변환
 
       /* RestAPI 호출 */
       api
