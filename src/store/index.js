@@ -4,6 +4,7 @@ import Auth from './modules/auth'
 import User from './modules/user'
 import Department from './modules/department'
 import Profile from './modules/profile'
+import Dashboard from './modules/dashboard'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     Auth,
     User,
     Department,
-    Profile
+    Profile,
+    Dashboard
   }
 })

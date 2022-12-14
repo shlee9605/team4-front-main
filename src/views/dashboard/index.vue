@@ -1,208 +1,76 @@
 <template>
-  <div>
-    <h1>대시보드</h1>
-    <div>장비: {{ selected.deviceName }}</div>
-    <div>태그: {{ selected.tagList }}</div>
-    <div v-if="chartData">
-      <line-chart ref="chart" :chart-data="chartData" :options="options" style="width: 500px"></line-chart>
+  <div id="divReloadLayer">
+    <h1 @click="reloading()">대시보드</h1>
+    <!-- <div>장비: {{ selected.deviceName }}</div>
+    <div>태그: {{ selected.tagList }}</div> -->
+    <div  class="dashBoard">
+      <iframe src="http://192.168.0.62:3000/d-solo/XiUQrvc4z/eduki1-bulryangryul?orgId=1&from=1670987286078&to=1670987586078&panelId=2" width="450" height="200" frameborder="0"></iframe>
+      <iframe src="http://192.168.0.62:3000/d-solo/mIowkd54z/edukit1-sigandaebi-saengsanryang?orgId=1&from=1670965615318&to=1670987215318&panelId=2" width="450" height="200" frameborder="0"></iframe>
+    </div>  
+    <div class="dashBoard">
+      <iframe src="http://192.168.0.62:3000/d-solo/c8hYkdcVz/edukit2-bulryangryul?orgId=1&from=1670965638337&to=1670987238337&panelId=2" width="450" height="200" frameborder="0"></iframe>
+      <iframe src="http://192.168.0.62:3000/d-solo/pg4lzO54z/edukit2-sigandaebi-saengsanryang?from=1670965663349&to=1670987263349&orgId=1&panelId=2" width="450" height="200" frameborder="0"></iframe>
     </div>
+    <!-- <div v-if="chartData">
+      <line-chart ref="chart" :chart-data="chartData" :options="options" style="width: 500px"></line-chart>
+    </div> -->
   </div>
 </template>
 
 <script>
-import mqtt from 'mqtt'
-import LineChart from '@/components/chart/lineChart'
+// import axios from 'axios'
 
 export default {
-  components: {
-    'line-chart': LineChart
-  },
   data() {
     return {
-      mqttData: null,
-      selected: {
-        // 선택된 장비 정보
-        deviceId: 1, // TODO: 현재 화면에서 사용할 장비ID(선택 가능하도록 변경하도록 한다.)
-        deviceName: 'Edge1', // TODO: 현재 화면에서 출력할 장비이름(deviceId선택 시 자동 세팅되도록 한다.)
-        tagList: ['humidity', 'temperature'] // TODO: 현재 화면에서 출력할 태그 이름(deviceId선택 시 해당 장비의 태그를 설정할 수 있도록 한다.),
-        // tagList: ['tag1', 'tag2'] // TODO: 현재 화면에서 출력할 태그 이름(deviceId선택 시 해당 장비의 태그를 설정할 수 있도록 한다.)
-      },
-      options: {
-        responsive: true,
-        title: {
-          display: true,
-          text: '온습도 차트'
-        },
-        tooltips: {
-          mode: 'index'
-        },
-        hover: {
-          mode: 'index'
-        },
-        scales: {
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: 'Time'
-              }
-            }
-          ],
-          yAxes: [
-            {
-              stacked: false,
-              scaleLabel: {
-                display: true
-              }
-            }
-          ]
-        }
-      },
-      maxDataLength: 20, // TODO: 현재 차트에서 출력할 데이터의 최대크기(화면에서 입력 가능하도록 한다.)
-      mqttDataList: [], // mqtt를 통해 받은 데이터(리스트로 계속 추가됨)
-      chartData: null, // 차트로 표현될 데이터
-      chartLabels: [], // 차트에서 사용할 라벨 리스트(가로축 라벨)
-      chartDatasetLabels: [], // 차트에서 사용할 데이터셋 라벨 리스트
-      chartDatasetDataList: [] // 차트에서 사용할 데이터셋 데이터 리스트
+    }
+  },
+  computed: {
+    productId(){
+      console.log(this.$store.getters.Dashboard.productId);
+      this.$store.dispatch('actDashboardInfo', 2)
+      console.log(this.$store.getters.Dashboard.productId);
+      // () => $('#divReloadLayer').load(window.location.href+' #divReloadLayer');
+    }
+  },
+  watch: {
+    productId(value){
+      if(value){
+        // $("#divReloadLayer").load(window.location.href + " #divReloadLayer" )
+        // $('#divReloadLayer').load(window.location+' #divReloadLayer')
+        console.log("와치");
+        // location.reload()
+      }
+      
     }
   },
   created() {
-    this.createMqtt()
-  },
-  mounted() {
-    this.makeChartData()
+    this.$store.dispatch('actDashboardInfo', 2) // 토큰으로 유저 id 확인하여 정보 호출
+
   },
   methods: {
-    createMqtt() {
-      // mqtt연결
-      const mqttClient = mqtt.connect(process.env.VUE_APP_MQTT)
-
-      mqttClient.on('connect', () => {
-        // mqtt연결 시 구독한다.
-        const topic = 'metacamp/sensor' // 구독할 topic
-        mqttClient.subscribe(topic, {}, (error, res) => {
-          console.log('subscribed')
-          if (error) {
-            console.error('mqtt client error', error)
-          }
-        })
-      })
-
-      ///////important///////
-      // const data = {
-      //   tagId: 1,
-      //   value: 0
-      // }
-
-      // mqttClient.publish(topic, JSON.stringify(data));
-      ///////important///////
-
-      // 메세지 실시간 수신
-      mqttClient.on('message', (topic, message) => {
-        const mqttData = JSON.parse(message) // json string으로만 받을 수 있음
-        console.log(mqttData)
-
-        // 선택된 devicdId만 수용함
-        this.removeOldData() // 오래된 데이터 제거
-
-        this.mqttDataList.push(mqttData) // 리스트에 계속 추가함
-
-        this.makeChartLabels(mqttData) // 차트라벨 생성
-        this.makeChartData() // 차트용 데이터 작성
-
-        // if (this.selected.deviceId === mqttData.id) {
-        //   this.removeOldData() // 오래된 데이터 제거
-
-        //   this.mqttDataList.push(mqttData) // 리스트에 계속 추가함
-
-        //   this.makeChartLabels(mqttData) // 차트라벨 생성
-        //   this.makeChartData() // 차트용 데이터 작성
-        // }
-      })
-    },
-    removeOldData() {
-      // 현재 차트에 출력할 수가 x개를 넘어서면 제일 오래된 데이터를 제거 한다.
-      if (this.maxDataLength - 1 < this.mqttDataList.length) {
-        this.mqttDataList.shift() // mqttData제거
-        this.chartLabels.shift() // 차트라벨 제거
-      }
-    },
-    makeChartData() {
-      // 차트용 데이터 생성
-
-      /* 테스트 데이터 */
-      // this.chartData = {
-      //   labels: ['1sec', '2sec', '3sec', '4sec', '5sec'],
-      //   datasets: [
-      //     {
-      //       label: '장비1',
-      //       data: [100, 120, 130, 150, 110]
-      //     }
-      //   ]
-      // }
-
-      // mqtt정보가 없으면 기본 그래프를 그려준다.(이것이 없으면 그래프 자체가 나오지 않음)
-      if (this.mqttDataList.length === 0) {
-        this.chartData = {
-          labels: ['0'],
-          datasets: [
-            {
-              label: 'no data',
-              data: [0]
-            }
-          ]
-        }
-
-        return
-      }
-
-      // 데이터셋 라벨 리스트 생성(태그 리스트(tagList)를 데이터셋 라벨로 사용한다.)
-      const datasetLabels = []
-      for (let i = 0; i < this.selected.tagList.length; i += 1) {
-        const tagName = this.selected.tagList[i] // tagName을 추출함
-        datasetLabels.push(tagName) // tagName을 라벨로 사용함
-      }
-      this.chartDatasetLabels = Array.from(new Set(datasetLabels)) // 중복 제거
-
-      // 차트 데이터 생성
-      this.chartData = {
-        labels: this.chartLabels,
-        datasets: this.makeDatasetDatas()
-      }
-    },
-    makeChartLabels(mqttData) {
-      // 차트라벨(가로측) 생성
-      this.chartLabels.push(mqttData.datetime.substring(11, 19)) // datetime을 사용한다.(분:초만 추출함)
-    },
-    makeDatasetDatas() {
-      // 데이터셋의 데이터 추출
-      const datasetDatas = []
-
-      for (let i = 0; i < this.chartDatasetLabels.length; i += 1) {
-        const label = this.chartDatasetLabels[i] // label을 하나씩 추출한다.
-        const datas = [] // 해당 label에 속한 데이터셋의 데이터 리스트
-
-        // mqtt로 들어온 데이터에서 key값으로 사용된 tag와 현재 label이 같으면 해당 데이터를 추출 한다.
-        for (let j = 0; j < this.mqttDataList.length; j += 1) {
-          const mqttData = this.mqttDataList[j]
-          const tagData = mqttData[label] // 현재 데이터셋 label과 같은 태그만 추출한다.
-          datas.push(tagData)
-        }
-
-        datasetDatas.push({
-          label: label,
-          fill: false,
-          data: datas
-        })
-      }
-      return datasetDatas
-      // return datasetDatas.map((item, idx) => {
-      //   const color = idx === 0 ? '#1B9CFC' : '#e74c3c'
-      //   return { ...item, borderColor: color }
-      // })
+    reloading(){
+      $("#divReloadLayer").load(window.location.href + "#divReloadLayer");
+      console.log("실행");
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.dashBoard{
+  margin-top: 3vh;
+  width: 100%;
+  height: 35vh;
+  display : grid;
+  // grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-flow: dense;
+  align-items: center;
+  justify-items: center;
+  // border: 2px solid black;
+  border: groove 10px;
+  background-color : gray
+}
+
+</style>
