@@ -6,6 +6,12 @@
     <div v-if="chartData">
       <line-chart ref="chart" :chart-data="chartData" :options="options" style="width: 500px"></line-chart>
     </div>
+    <iframe
+      src="http://192.168.0.62:3000/d-solo/XiUQrvc4z/edukit?orgId=1&from=1670982139074&to=1670983039075&panelId=2"
+      width="100%"
+      height="100%"
+      frameborder="0"
+    ></iframe>
   </div>
 </template>
 

@@ -5,8 +5,15 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" v-for="dep in this.departmentList" @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">
-            {{ `${dep.name} 기계` }}</b-nav-item
+          <b-nav-item
+            href="#"
+            v-for="dep in this.departmentList"
+            v-if="dep.topic == null || dep.code == null"
+            @click="onClick(`/edukit/NotFound`)"
+            >{{ `${dep.name} ${dep.topic}` }}</b-nav-item
+          >
+          <b-nav-item href="#" v-else @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">
+            {{ `${dep.name} ${dep.topic}` }}</b-nav-item
           >
         </b-navbar-nav>
 
@@ -40,7 +47,7 @@ export default {
       return this.$store.getters.TokenUser && this.$store.getters.TokenUser.name
     },
     departmentList() {
-      return this.$store.getters.DepartmentList // 부서정보 가져오기
+      return this.$store.getters.DepartmentList
     }
   },
   created() {
@@ -51,6 +58,9 @@ export default {
       this.$router.push(path).catch(() => {
         alert('잘못된 접근입니다.')
       })
+    },
+    check() {
+      console.log(this.departmentList)
     }
   }
 }
