@@ -10,16 +10,15 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // navermap
 import naver from 'vue-naver-maps'
-// geolocation
-import VueGeolocationApi from 'vue-geolocation-api'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 Vue.use(naver, {
-  clientID: process.env.VUE_APP_CLIENT_ID
+  clientID: process.env.VUE_APP_CLIENT_ID,
+  useGovAPI: false,
+  subModules: ''
 })
-Vue.use(VueGeolocationApi)
 
 Vue.config.productionTip = false
 

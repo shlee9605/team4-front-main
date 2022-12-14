@@ -61,9 +61,9 @@ export default {
         .get('/serverApi/departments', { params: payload })
         .then(response => {
           const departmentList = response && response.data && response.data.rows
-
+          console.log(departmentList)
           // 여러 topic이 있을 경우 콤마를 슬래시로 바꿔서
-          // 헤더에 'topic1/topic2' 식으로 호출되게 하기
+          // 헤더에 'topic1-topic2' 식으로 호출되게 하기
           for (const indx in departmentList) {
             const repTopic = departmentList[indx].topic.replaceAll(',', '-')
             departmentList[indx].topic = repTopic
