@@ -1,67 +1,58 @@
 <template>
   <div>
-    <naver-maps :height="height" :width="width" :mapOptions="mapOptions" :initLayers="initLayers" @load="onLoad">
-      <naver-info-window class="info-window" @load="onWindowLoad" :isOpen="info" :marker="marker">
-        <div class="info-window-container">
-          <h1>{{ hello }}</h1>
-        </div>
-      </naver-info-window>
+    <h1 @click="getCurrentPosition">Welcome!</h1>
+
+    <!-- 네이버지도 호출 -->
+    <naver-maps
+      :height="height"
+      :width="width"
+      :mapOptions="mapOptions"
+      :useStyleMap="useStyleMap"
+      :initLayers="initLayers"
+      @load="onLoad"
+    >
+      <!-- 정보창 -->
+      <naver-info-window class="info-window" @load="onWindowLoad" :isOpen="info" :marker="marker"> </naver-info-window>
+
+      <!-- 마커 -->
       <naver-marker :lat="37" :lng="127" @click="onMarkerClicked" @load="onMarkerLoaded" />
-      <naver-circle :lat="37" :lng="127" :radius="88600" />
-      <naver-rectangle :south="36" :north="38" :west="126" :east="128" />
-      <naver-ellipse :bounds="{ south: 36, north: 38, west: 126, east: 128 }" />
-      <naver-polygon
-        :paths="[
-          [
-            { lat: 37, lng: 127 },
-            { lat: 38, lng: 127 },
-            { lat: 38, lng: 129 },
-            { lat: 37, lng: 128 }
-          ]
-        ]"
-      />
-      <naver-polyline
-        :path="[
-          { lat: 37, lng: 127 },
-          { lat: 38, lng: 129 }
-        ]"
-      />
-      <naver-ground-overlay
-        :url="'//logoproject.naver.com/img/img_about.gif'"
-        :bounds="{ south: 36.7, north: 36.9, west: 126.5, east: 127.5 }"
-      />
     </naver-maps>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'naverMap',
   data() {
     return {
-      width: 800,
-      height: 800,
+      myPositionObj: {
+        latitude: null,
+        longitude: null
+      },
+      useStyleMap: true,
+      width: null,
+      height: 500,
       info: false,
       marker: null,
       count: 1,
       map: null,
       isCTT: false,
       mapOptions: {
-        lat: 37,
-        lng: 127,
+        lat: 50, //this.myPositionObj.latitude,
+        lng: 50, //this.myPositionObj.longitude,
         zoom: 10,
         zoomControl: true,
-        zoomControlOptions: { position: 'TOP_RIGHT' },
-        mapTypeControl: true
+        zoomControlOptions: { position: this.naver.maps.Position.TOP_RIGHT },
+        mapTypeControl: true,
+        mapTypeControlOptions: { style: this.naver.maps.MapTypeControlStyle.DROPDOWN }
       },
       initLayers: ['BACKGROUND', 'BACKGROUND_DETAIL', 'POI_KOREAN', 'TRANSIT', 'ENGLISH', 'CHINESE', 'JAPANESE']
     }
   },
-  computed: {
-    hello() {
-      return `Hello, World! × ${this.count}`
-    }
-  },
+  // created() {
+  //   // 페이지가 처음 열렸을 때 현재 위치 호출
+  //   // this.getCurrentPosition()
+  // },
   methods: {
     onLoad(vue) {
       this.map = vue
@@ -73,16 +64,45 @@ export default {
     onMarkerLoaded(vue) {
       this.marker = vue.marker
     }
-  },
-  mounted() {
-    setInterval(() => this.count++, 1000)
+
+    // geolocation API를 활용하여 현재 위치 좌표 호출
+    // getCurrentPosition () {
+    //   if (!navigator.geolocation) {
+    //     console.log('위치 정보를 찾을 수 없습니다.') // 위치파악이 안될 경우
+    //   } else {
+    //     navigator.geolocation.getCurrentPosition(this.getPositionValue, this.geolocationError)
+    //   }
+    // },
+    // // 1. 현재 좌표를 각 변수에 저장
+    // getPositionValue(val) {
+    //   this.myPositionObj.latitude = val.coords.latitude
+    //   this.myPositionObj.longitude = val.coords.longitude
+    //   console.log(this.myPositionObj)
+    // },
+    // // 2. getCurrentPosition()에서 else문을 타서도 에러가 생길경우
+    // geolocationError() {
+    //   this.setAlert('no location!!')
+    // },
+    // setAlert (text) {
+    //   alert(text)
+    // }
+
+    // var location = new naver.maps.LatLng(position.coords.latitude,
+    //                                      position.coords.longitude);
+
+    // map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+    // map.setZoom(10); // 지도의 줌 레벨을 변경합니다.
+
+    // infowindow.setContent('<div style="padding:20px;">' + 'geolocation.getCurrentPosition() 위치' + '</div>');
+
+    // infowindow.open(map, location);
   }
 }
 </script>
 <style scoped>
-.info-window-container {
+/* .info-window-container {
   padding: 10px;
   width: 300px;
   height: 100px;
-}
+} */
 </style>

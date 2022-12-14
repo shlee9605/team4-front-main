@@ -61,6 +61,13 @@ export default {
         .get('/serverApi/departments', { params: payload })
         .then(response => {
           const departmentList = response && response.data && response.data.rows
+
+          // 여러 topic이 있을 경우 콤마를 슬래시로 바꿔서
+          // 헤더에 'topic1/topic2' 식으로 호출되게 하기
+          for (const indx in departmentList) {
+            const repTopic = departmentList[indx].topic.replaceAll(',', '-')
+            departmentList[indx].topic = repTopic
+          }
           context.commit('setDepartmentList', departmentList)
         })
         .catch(error => {
@@ -72,7 +79,7 @@ export default {
     actDepartmentInsert(context, payload) {
       // 상태값 초기화
       context.commit('setInsertedResult', null)
-      const newTopic = payload.topic.split(",") // ['a', ' b'] array형식으로 반환
+      const newTopic = payload.topic.split(',') // ['a', ' b'] array형식으로 반환
 
       // 빈 스페이스가 있을 경우 없애기 위한 전처리
       let newTopicTrim = []
@@ -125,7 +132,7 @@ export default {
       // 상태값 초기화
       context.commit('setUpdatedResult', null)
 
-      const newTopic = payload.topic.split(",") // ['a', ' b'] array형식으로 반환
+      const newTopic = payload.topic.split(',') // ['a', ' b'] array형식으로 반환
 
       // 빈 스페이스가 있을 경우 없애기 위한 전처리
       let newTopicTrim = []
