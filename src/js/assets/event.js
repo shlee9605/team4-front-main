@@ -206,6 +206,7 @@ class Event {
       })
 
       this.client.on('message', (topic, payload) => {
+        try{
         // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
         let message = JSON.parse(payload)
         try {
@@ -263,7 +264,9 @@ class Event {
         } catch {
           console.log('catching...')
         }
-      })
+      }catch{
+        console.log('catching...')
+      }})
     })
   }
 }
