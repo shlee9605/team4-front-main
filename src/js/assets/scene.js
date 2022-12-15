@@ -7,6 +7,7 @@ import { Camera } from './camera'
 import { Light } from './light'
 import { Button } from './button'
 import { TrafficLight } from './trafficLight'
+import { VisionSensor } from './visionSensor'
 
 class Scene {
   constructor(file = null) {
@@ -17,6 +18,7 @@ class Scene {
     this.light = new Light()
     this.button = new Button()
     this.trafficLight = new TrafficLight()
+    this.visionSensor = new VisionSensor()
     this.setScene()
     this.setMesh()
     this.setGrid()
@@ -26,6 +28,8 @@ class Scene {
     this.scene.background = new THREE.Color(0x101010)
 
     this.scene.add(this.resource.obj)
+    
+    this.scene.add(this.visionSensor.obj)
 
     this.scene.add(this.light.ambientLight)
 
