@@ -36,14 +36,14 @@ export default {
       // edukit 데이터 조회
       actDashboardInfo(context, payload) {
         context.commit('setDashboard', { ...stateInit.Dashboard })
+        
         /* RestAPI 호출 */
-        // console.log(payload);
         api
           .get(`/serverApi/products/${payload}`)
           .then(response => {
             const dashboard = response && response.data
+            // console.log("response data",dashboard)
             context.commit('setDashboard', dashboard)
-            // console.log(response);
           })
           .catch(error => {
             console.error('Dashboard.error', error)
