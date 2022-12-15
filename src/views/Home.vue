@@ -4,7 +4,6 @@
     <div class="navermap">
       <naver-map />
     </div>
-  
   </div>
 </template>
 
@@ -19,7 +18,7 @@ export default {
     tokenUser() {
       return this.$store.getters.TokenUser
     }
-  },
+  }
 }
 </script>
 
