@@ -21,6 +21,7 @@ Vue.use(naver, {
 })
 
 Vue.config.productionTip = false
+Vue.prototype.$EventBus = new Vue()
 
 new Vue({
   router,
