@@ -12,9 +12,16 @@
             @click="onClick(`/edukit/NotFound`)"
             >{{ `${dep.name} ${dep.topic}` }}</b-nav-item
           >
-          <b-nav-item href="#" v-else @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">
-            {{ `${dep.name} ${dep.topic}` }}</b-nav-item
+          <b-nav-item href="#" v-else-if="deviceUVC == dep.code" @click="onClick(`/edukit/${dep.code}/${dep.topic}`)">{{
+            `${dep.name} ${dep.topic}`
+          }}</b-nav-item>
+          <b-nav-item
+            href="#"
+            v-else-if="deviceMetacamp == dep.code"
+            @click="onClick(`/edukit/${dep.code}/${dep.topic}`)"
+            >{{ `${dep.name} ${dep.topic}` }}</b-nav-item
           >
+          <b-nav-item href="#" v-else @click="onClick(`/edukit/${dep.code}/${dep.topic}`)"></b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -35,6 +42,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      deviceUVC: null,
+      deviceMetacamp: null
+    }
+  },
   computed: {
     isLoggedin() {
       let login = false
@@ -52,6 +65,16 @@ export default {
   },
   created() {
     this.$store.dispatch('actDepartmentList') // 부서정보 조회
+
+    // eventbus로 지도 마커 클릭 인식
+    this.$EventBus.$on('markerUVC', res => {
+      console.log(res)
+      this.markerUVC()
+    })
+    this.$EventBus.$on('markerMetacamp', res => {
+      console.log(res)
+      this.markerMetacamp()
+    })
   },
   methods: {
     onClick(path) {
@@ -59,8 +82,17 @@ export default {
         alert('잘못된 접근입니다.')
       })
     },
-    check() {
-      console.log(this.departmentList)
+
+    // 지도 마커 인식 될 시 맞는 부서코드로 반환하기 (uvc, metacamp만 넣음)
+    markerMetacamp() {
+      this.deviceUVC = null
+      this.deviceMetacamp = 'metacamp'
+      return this.deviceMetacamp // 부서코드 metacamp를 반환
+    },
+    markerUVC() {
+      this.deviceMetacamp = null
+      this.deviceUVC = 'uvc'
+      return this.deviceUVC // 부서코드 uvc를 반환
     }
   }
 }

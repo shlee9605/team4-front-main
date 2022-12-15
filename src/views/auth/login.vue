@@ -1,24 +1,18 @@
 <template>
   <div>
-    <div style="margin-top: 80px">
-      <b-row align-h="center">
-        <b-col cols="4">
-          <b-card title="로그인">
-            <b-form-group label-cols="4" label-cols-lg="3" label="아이디" label-for="input-userid">
-              <b-form-input id="input-userid" v-model="userid"></b-form-input>
-            </b-form-group>
-            <b-form-group label-cols="4" label-cols-lg="3" label="패스워드" label-for="input-password">
-              <b-form-input id="input-password" v-model="password" type="password"></b-form-input>
-            </b-form-group>
-            <b-form-group label-cols="4" label-cols-lg="3" label="">
-              <b-button variant="primary" :disabled="loading" @click="onSubmit"
-                ><b-spinner v-if="loading" small></b-spinner> 로그인</b-button
-              >
-              <b-button variant="link" @click="onClickAddNew">회원가입</b-button>
-            </b-form-group>
-          </b-card>
-        </b-col>
-      </b-row>
+    <particles />
+    <div class="container">
+      <b-form-group class="box" @keyup.enter.native="onSubmit">
+        <h4>SMART FACTORY<br />SOLUTION</h4>
+        <b-form-input id="input-userid" v-model="userid" placeholder="아이디" autocomplete="off"> </b-form-input>
+        <i class="typcn typcn-eye" id="eye"></i>
+        <b-form-input id="input-password" v-model="password" placeholder="비밀번호" type="password" autocomplete="off">
+        </b-form-input>
+        <b-button aria-disabled="true" class="btn1" @click="onSubmit"
+          ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
+        >
+      </b-form-group>
+      <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
     </div>
     <signupform />
   </div>
@@ -27,10 +21,14 @@
 <script>
 import jwtDecode from 'jwt-decode'
 import signupform from './signupform.vue'
+import particles from '@/components/particles.vue'
+import Particles from '../../components/particles.vue'
 
 export default {
   components: {
-    signupform: signupform
+    signupform: signupform,
+    particles,
+    Particles
   },
   data() {
     return {
@@ -121,7 +119,11 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch('authLogin', { userid: this.userid, password: this.password })
+      this.$store.dispatch('authLogin', {
+        userid: this.userid,
+        password: this.password
+      })
+      console.log(this.userid)
     },
     onClickAddNew() {
       // 1. 상세 정보 초기화
@@ -129,9 +131,133 @@ export default {
 
       // 2. 모달 출력
       this.$bvModal.show('modal-signup-inform')
+    },
+    keydownHandler(event) {
+      if (event.which === 13) {
+        this.onSubmit
+      }
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400');
+@import url('https://fonts.googleapis.com/css2?family=Nabla&display=swap');
+
+body,
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #1d243d;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  margin: 0;
+  top: 8%;
+  left: 50%;
+  position: relative;
+  text-align: center;
+  transform: translateX(-50%);
+  background-color: rgb(33, 41, 66);
+  border-radius: 9px;
+  border-top: 10px solid #79a6fe;
+  border-bottom: 10px solid #8bd17c;
+  width: 400px;
+  height: 470px;
+  box-shadow: 1px 1px 108.8px 19.2px rgb(25, 31, 53);
+  transform: translate(-50%, 40%);
+}
+
+.box h4 {
+  font-family: 'Nabla', cursive;
+  color: #5c6bc0;
+  font-size: 30px;
+  margin-top: 94px;
+  margin-bottom: 10%;
+  font-weight: bold;
+}
+
+.box h4 span {
+  color: #dfdeee;
+  font-weight: lighter;
+}
+
+.box input[type='text'],
+.box input[type='password'] {
+  display: block;
+  margin: 20px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 320px;
+  outline: none;
+  color: #d6d6d6;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+::-webkit-input-placeholder {
+  color: #565f79;
+}
+
+.box input[type='text']:focus,
+.box input[type='password']:focus {
+  border: 1px solid #79a6fe;
+}
+
+a {
+  color: #5c7fda;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn1 {
+  border: 0;
+  background: #7f5feb;
+  color: #dfdeee;
+  border-radius: 100px;
+  width: 330px;
+  height: 49px;
+  font-size: 16px;
+  position: absolute;
+  top: 73%;
+  left: 9%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background: #5d33e6;
+}
+
+.dnthave {
+  position: absolute;
+  top: 88%;
+  left: 44%;
+  font-size: 13px;
+}
+
+.error {
+  background: #ff3333;
+  text-align: center;
+  width: 337px;
+  height: 20px;
+  padding: 2px;
+  border: 0;
+  border-radius: 5px;
+  margin: 10px auto 10px;
+  position: absolute;
+  top: 31%;
+  left: 7.2%;
+  color: white;
+  display: none;
+}
+</style>
