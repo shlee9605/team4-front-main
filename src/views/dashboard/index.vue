@@ -9,6 +9,12 @@
       <iframe src="http://192.168.0.62:3000/d-solo/mIowkd54z/edukit1-sigandaebi-saengsanryang?orgId=1&from=1670965615318&to=1670987215318&panelId=2&refresh=1s" width="450" height="200" frameborder="0"></iframe>
       <iframe src="http://192.168.0.62:3000/d-solo/pg4lzO54z/edukit2-sigandaebi-saengsanryang?from=1670965663349&to=1670987263349&orgId=1&panelId=2&refresh=1s" width="450" height="200" frameborder="0"></iframe>
     </div>
+    <iframe
+      src="http://192.168.0.62:3000/d-solo/XiUQrvc4z/edukit?orgId=1&from=1670982139074&to=1670983039075&panelId=2"
+      width="100%"
+      height="100%"
+      frameborder="0"
+    ></iframe>
   </div>
 </template>
 

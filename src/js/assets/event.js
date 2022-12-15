@@ -8,19 +8,37 @@ import calculate from '../plugins/raycast'
 import ThreeButtonHandler from '../plugins/raycaster'
 import buttonhandler from '../plugins/buttonhandler'
 import statehandler from '../plugins/statehandler'
+import store from '../../store/index'
+import router from '../../router/index'
 
 class Event {
   constructor(element, renderer, scene) {
     ////config////
     const publish_topic = process.env.VUE_APP_PUBLISH_TOPIC
     const subscribe_topic = process.env.VUE_APP_SUBSCRIBE_TOPIC
-    const port = process.env.VUE_APP_PORT2
-    const host = process.env.VUE_APP_HOST2
-    const path = process.env.VUE_APP_PATH2
+
+    // port, host, path 초기 설정 (에러 방지를 위해 임의로 0을 기입)
+    let port = 0
+    let host = 0
+    let path = 0
 
     const raycast = new THREE.Raycaster()
     raycast.layers.set(1)
     const pointer = new THREE.Vector2()
+
+    // 부서 및 라우터 정보 호출
+    const departmentList = store.getters.DepartmentList
+    const routerCode = router.history.current.params.depCode
+
+    // 부서코드가 같을 때의 port, host, path 가져오기
+    for (const indx in departmentList) {
+      if (departmentList[indx].code == routerCode) {
+        port = departmentList[indx].port
+        host = departmentList[indx].host
+        path = departmentList[indx].path
+      }
+    }
+    console.log(port, host, path)
 
     renderer.domElement.addEventListener('pointerdown', event => {
       const xy = calculate.ray(event, renderer)

@@ -59,7 +59,6 @@ class Scene {
     this.scene.add(this.trafficLight.statusLight1)
     this.scene.add(this.trafficLight.statusLight2)
     this.scene.add(this.trafficLight.statusLight3)
-
   }
 
   setGrid() {
