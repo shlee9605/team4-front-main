@@ -3,7 +3,7 @@
     <b-modal id="modal-streaming1" size="md" class="modal-content" title="실시간 보기(Metacamp)">
       <div class="overflow">
         <!-- <iframe src="http://192.168.0.106:3002/stream" width="650px" height="500px" frameborder="0"></iframe> -->
-        <iframe src="VUE_APP_STREAM1" width="650px" height="500px" frameborder="0"></iframe>
+        <iframe :src="VUE_APP_STREAM1" width="650px" height="500px" frameborder="0"></iframe>
 
     </div>
     </b-modal>
@@ -11,14 +11,21 @@
     <b-modal id="modal-streaming2" size="md" class="modal-content" title="실시간 보기(UVC)">
       <div class="overflow">
         <!-- <iframe src="http://192.168.0.54:3002/stream" width="650px" height="500px" frameborder="0"></iframe> -->
-        <iframe src="VUE_APP_STREAM2" width="650px" height="500px" frameborder="0"></iframe>
+        <iframe :src="VUE_APP_STREAM2" width="650px" height="500px" frameborder="0"></iframe>
       </div>
     </b-modal>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      VUE_APP_STREAM1: process.env.VUE_APP_STREAM1,
+      VUE_APP_STREAM2: process.env.VUE_APP_STREAM2
+    }
+  },
+}
 </script>
 
 <style scoped lang="scss">
