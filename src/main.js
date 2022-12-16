@@ -7,6 +7,10 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+// veevalidate
+import { ValidationObserver, ValidationProvider, extend, localize } from 'vee-validate'
+import * as rules from 'vee-validate/dist/rules'
+import ko from 'vee-validate/dist/locale/ko.json'
 
 // navermap
 import naver from 'vue-naver-maps'
@@ -20,8 +24,15 @@ Vue.use(naver, {
   subModules: ''
 })
 
+Object.keys(rules).forEach(rule => {
+  extend(rule, rules[rule])
+})
+localize('ko', ko)
+
 Vue.config.productionTip = false
 Vue.prototype.$EventBus = new Vue()
+Vue.component('ValidationObserver', ValidationObserver)
+Vue.component('ValidationProvider', ValidationProvider)
 
 new Vue({
   router,

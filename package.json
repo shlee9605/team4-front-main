@@ -18,6 +18,7 @@
     "node-sass": "^8.0.0",
     "particles.js": "^2.0.0",
     "sass-loader": "^10",
+    "vee-validate": "^3.4.14",
     "vue": "^2.6.11",
     "vue-axios": "^3.4.0",
     "vue-naver-maps": "^0.14.3",

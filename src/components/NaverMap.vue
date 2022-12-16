@@ -41,6 +41,7 @@ export default {
       // width: auto,
       height: 500,
       info: false, // true일경우 정보열기, false일경우 정보닫기
+      info2: false,
       marker: null,
       map: null,
       isCTT: false,
