@@ -1,5 +1,5 @@
 import { Group } from 'three'
-
+import * as THREE from 'three'
 
 class VisionSensor {
   constructor() {
