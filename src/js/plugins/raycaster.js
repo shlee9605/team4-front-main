@@ -59,6 +59,15 @@ const ThreeButtonHandler = {
         return { tagId: '11', value: '1' }
       }
     }
+
+    if (intersect.object.parent.name == "비전센서그룹") {
+      // console.log(intersect.object.parent.parent.background);
+      // intersect.object.parent.parent.background.set(0x770000)
+      
+
+      console.log("여기 모달 추가하시면 됩니다");
+
+    }
   }
 }
 
