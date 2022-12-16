@@ -54,6 +54,7 @@ class VisionSensor {
     this.SensorVision.position.z += 6.4
     this.SensorVision.layers.enable(1)
 
+    //비전센서 4가지를 그룹화 해주고 이름을 넣어줌
     this.obj.add(this.visionSensorFloor, this.visionSensorTowerSection, this.visionSensorJipSection, this.SensorVision)
     this.obj.name = "비전센서그룹"
 

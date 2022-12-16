@@ -1,7 +1,5 @@
 <template>
   <div>
-    <!-- {{process.env}} -->
-    <!-- {{process}} -->
     <b-modal id="modal-streaming1" size="md" class="modal-content" title="실시간 보기(Metacamp)">
       <div class="overflow">
         <!-- <iframe src="http://192.168.0.106:3002/stream" width="650px" height="500px" frameborder="0"></iframe> -->

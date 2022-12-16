@@ -8,6 +8,7 @@ import { Light } from './light'
 import { Button } from './button'
 import { TrafficLight } from './trafficLight'
 import { VisionSensor } from './visionSensor'
+import { Chips } from './chips'
 
 class Scene {
   constructor(file = null) {
@@ -19,6 +20,7 @@ class Scene {
     this.button = new Button()
     this.trafficLight = new TrafficLight()
     this.visionSensor = new VisionSensor()
+    this.chips = new Chips()
     this.setScene()
     this.setMesh()
     this.setGrid()
@@ -63,6 +65,12 @@ class Scene {
     this.scene.add(this.trafficLight.statusLight1)
     this.scene.add(this.trafficLight.statusLight2)
     this.scene.add(this.trafficLight.statusLight3)
+
+    this.scene.add(this.chips.chip1)
+    this.scene.add(this.chips.chip2)
+    this.scene.add(this.chips.chip3)
+    this.scene.add(this.chips.chip4)
+    this.scene.add(this.chips.chip5)
   }
 
   setGrid() {
