@@ -1,5 +1,5 @@
 import { Group } from 'three'
-import * as THREE from 'three'
+
 
 class VisionSensor {
   constructor() {
@@ -31,29 +31,32 @@ class VisionSensor {
     this.visionSensorFloor.position.x += 0
     this.visionSensorFloor.position.y += 0.15
     this.visionSensorFloor.position.z += 0
-    this.visionSensorFloor.layers.enable(1)
+    this.visionSensorFloor.layers.enable(1);
 
     this.visionSensorTowerSection.rotateY(-(Math.PI / 2))
     this.visionSensorTowerSection.name = '비전센서메인기둥'
     this.visionSensorTowerSection.position.x += 0
     this.visionSensorTowerSection.position.y += 5.15
     this.visionSensorTowerSection.position.z += 0
+    this.visionSensorTowerSection.layers.enable(1)
 
     this.visionSensorJipSection.rotateY(-(Math.PI / 2))
     this.visionSensorJipSection.name = '비전센서팔'
     this.visionSensorJipSection.position.x += 0
     this.visionSensorJipSection.position.y += 10
     this.visionSensorJipSection.position.z += 4.5
+    this.visionSensorJipSection.layers.enable(1)
 
     this.SensorVision.rotateY(-(Math.PI / 2))
     this.SensorVision.name = '비전센서'
     this.SensorVision.position.x += 0
     this.SensorVision.position.y += 9.6
     this.SensorVision.position.z += 6.4
+    this.SensorVision.layers.enable(1)
 
     this.obj.add(this.visionSensorFloor, this.visionSensorTowerSection, this.visionSensorJipSection, this.SensorVision)
+    this.obj.name = "비전센서그룹"
 
-    // this.obj.position.x = 10
   }
 }
 
