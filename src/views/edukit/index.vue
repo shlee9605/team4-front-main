@@ -29,15 +29,10 @@ export default {
     departmentList() {
       return this.$store.getters.DepartmentList // 부서정보 가져오기
     },
-    modalCheck() {
-      if (this.$route.params.depCode == 'uvc') {
-        this.modalShow2 = true
-        return this.modalShow2
-      } else if (this.$route.params.depCode == 'metacamp') {
-        this.modalShow1 = true
-        return this.modalShow1
-      }
-    }
+    getBoolean() {
+      console.log("여기까지 오는거지", this.$store.getters.VisionObjectClick);
+      return this.$store.getters.VisionObjectClick
+    },
   },
   created() {
     this.$store.dispatch('actDepartmentList') // 부서정보 조회
@@ -46,13 +41,23 @@ export default {
     Three(this.$refs.webgl)
   },
   watch: {
+    getBoolean(value){
+      if(value){
+        this.modalCheck()
+        this.$store.commit('setVisionObjectFalse')
+      }
+    }
+  },
+  methods: {
     modalCheck() {
       if (this.$route.params.depCode == 'uvc') {
         this.modalShow2 = true
+        this.$bvModal.show("modal-streaming2")
       } else if (this.$route.params.depCode == 'metacamp') {
         this.modalShow1 = true
+        this.$bvModal.show("modal-streaming1")
       }
-    }
+    },
   }
 }
 </script>

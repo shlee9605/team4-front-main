@@ -1,3 +1,5 @@
+import store from "../../store"
+
 const ThreeButtonHandler = {
   Handling(intersect, scene) {
     if (intersect.object.name == '1호기') {
@@ -61,12 +63,8 @@ const ThreeButtonHandler = {
     }
 
     if (intersect.object.parent.name == "비전센서그룹") {
-      // console.log(intersect.object.parent.parent.background);
-      // intersect.object.parent.parent.background.set(0x770000)
-      
-
-      console.log("여기 모달 추가하시면 됩니다");
-
+      store.commit('setVisionObjectClick')
+      console.log("비전센서 클릭 => 상태값", store.getters.VisionObjectClick);
     }
   }
 }

@@ -2,23 +2,24 @@
   <div>
     <particles />
     <div class="container">
-      <validation-observer ref="observer" v-slot="{ handleSubmit }">
-        <b-form-group class="box" @submit.stop.prevent="handleSubmit(onSubmit)">
+      <!-- <validation-observer ref="observer" v-slot="{ handleSubmit }"> -->
+        <b-form-group class="box">
           <h4>SMART FACTORY<br />SOLUTION</h4>
           
-          <validation-provider name="userid" :rules="{ required: true }" v-slot="validationContext">
+          <!-- <validation-provider name="userid" :rules="{ required: true }" v-slot="validationContext"> -->
             <b-form-input
               id="input-userid"
               v-model="userid"
               placeholder="아이디"
               autocomplete="off"
-              :state="getValidationState(validationContext)"
+              state="getValidationState(validationContext)"
             >
             </b-form-input>
+            <!-- <b-form-invalid-feedback id="input-userid-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback> -->
             <i class="typcn typcn-eye" id="eye"></i>
-          </validation-provider>
+          <!-- </validation-provider> -->
 
-          <validation-provider>
+          <!-- <validation-provider> -->
             <b-form-input
               id="input-password"
               v-model="password"
@@ -30,10 +31,10 @@
             <b-button aria-disabled="true" class="btn1" @click="onSubmit"
               ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
             >
-          </validation-provider>
+          <!-- </validation-provider> -->
         </b-form-group>
         <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
-      </validation-observer>
+      <!-- </validation-observer> -->
     </div>
     <signupform />
   </div>
@@ -284,5 +285,13 @@ a:hover {
   left: 7.2%;
   color: white;
   display: none;
+}
+
+.invalid-feedback {
+    width: 100%;
+    // margin-top: 0.25rem;
+    font-size: 0.8em;
+    // right: 80%;
+    color: #ffc107b8;
 }
 </style>
