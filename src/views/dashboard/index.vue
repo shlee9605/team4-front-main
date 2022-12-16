@@ -19,7 +19,7 @@ export default {
       VUE_APP_GRAFANA1_1: process.env.VUE_APP_GRAFANA1_1,
       VUE_APP_GRAFANA2_1: process.env.VUE_APP_GRAFANA2_1,
       VUE_APP_GRAFANA1_2: process.env.VUE_APP_GRAFANA1_2,
-      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2
+      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2,
     }
   },
 }
@@ -27,11 +27,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashBoard{
+.dashBoard {
   margin-top: 3vh;
   width: 100%;
   height: 35vh;
-  display : grid;
+  display: grid;
   // grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: dense;
@@ -39,7 +39,6 @@ export default {
   justify-items: center;
   // border: 2px solid black;
   border: groove 10px;
-  background-color : gray
+  background-color: gray;
 }
-
 </style>
