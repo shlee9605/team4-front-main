@@ -2,11 +2,6 @@ import * as THREE from 'three'
 
 class Chips {
   constructor() {
-    this.mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry(2000, 2000),
-      new THREE.MeshPhongMaterial({ color: 0x999999, depthWrite: false })
-    )
-
     this.chip1 = new THREE.Mesh(
         new THREE.CylinderGeometry(1, 1, 0.8, 100),
         new THREE.MeshPhongMaterial({ color: 0x0ffffff, specular: 0x00ff00, shininess: 100 })
@@ -28,13 +23,10 @@ class Chips {
         new THREE.MeshPhongMaterial({ color: 0x0ffffff, specular: 0x00ff00, shininess: 100 })
     )
 
-    this.setButton()
+    this.setChips()
   }
 
-  setButton() {
-    this.mesh.rotation.x = -Math.PI / 2
-    this.mesh.receiveShadow = true
-
+  setChips() {
     this.chip1.name = '칩1'
     this.chip1.position.x -= 15
     this.chip1.position.y += 0.3
