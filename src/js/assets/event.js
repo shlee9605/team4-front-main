@@ -206,67 +206,68 @@ class Event {
       })
 
       this.client.on('message', (topic, payload) => {
-        try{
-        // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
-        let message = JSON.parse(payload)
         try {
-          prev_mech1 = mech1
-          prev_mech2 = mech2
+          // console.log(`토픽 ${topic}에서 전송된 메시지: ${payload.toString()}`);
+          let message = JSON.parse(payload)
+          try {
+            prev_mech1 = mech1
+            prev_mech2 = mech2
 
-          let data = message.Wrapper.filter(
-            p =>
-              p.tagId === '3' || //1호기 밀기   data[0]
-              p.tagId === '4' || //2호기 상태   data[1]
-              p.tagId === '6' || //컬러센서   data[2]
-              p.tagId === '18' || //lap1   data[3]
-              p.tagId === '19' || //lap1   data[4]
-              p.tagId === '20' || //lap1   data[5]
-              p.tagId === '35' || //belt   data[6]
-              p.tagId === '40' || //3호기 상태   data[7]
-              p.tagId === '21' || //1축 위치   data[8]
-              p.tagId === '22' //2축 위치   data[9]
-          )
-          mech1 = data[0].value
-          mech2 = data[1].value
+            let data = message.Wrapper.filter(
+              p =>
+                p.tagId === '3' || //1호기 밀기   data[0]
+                p.tagId === '4' || //2호기 상태   data[1]
+                p.tagId === '6' || //컬러센서   data[2]
+                p.tagId === '18' || //lap1   data[3]
+                p.tagId === '19' || //lap1   data[4]
+                p.tagId === '20' || //lap1   data[5]
+                p.tagId === '35' || //belt   data[6]
+                p.tagId === '40' || //3호기 상태   data[7]
+                p.tagId === '21' || //1축 위치   data[8]
+                p.tagId === '22' //2축 위치   data[9]
+            )
+            mech1 = data[0].value
+            mech2 = data[1].value
 
-          statehandler.start_state(data[6], start) //진행 상태
+            statehandler.start_state(data[6], start) //진행 상태
 
-          //cup color 판별
-          if (mech1 == true && prev_mech1 == false) {
-            basket.innerText = '판별 중...'
-            basket.style.color = 'black'
-            cup_state = true
-          }
-
-          if (cup_state == true) {
-            if (data[2].value == true) {
-              basket.innerText = '흰색'
-              basket.style.color = 'blue'
-              cup_state == false
-            } else if (cup_state == true && mech1 == false && prev_mech1 == true) {
-              basket.innerText = '빨간색'
-              basket.style.color = 'red'
-              cup_state == false
+            //cup color 판별
+            if (mech1 == true && prev_mech1 == false) {
+              basket.innerText = '판별 중...'
+              basket.style.color = 'black'
+              cup_state = true
             }
+
+            if (cup_state == true) {
+              if (data[2].value == true) {
+                basket.innerText = '흰색'
+                basket.style.color = 'blue'
+                cup_state == false
+              } else if (cup_state == true && mech1 == false && prev_mech1 == true) {
+                basket.innerText = '빨간색'
+                basket.style.color = 'red'
+                cup_state == false
+              }
+            }
+
+            //신호등
+            statehandler.light_state(data[3], data[4], data[5], scene)
+
+            //1,2,3호기 실행상태
+            statehandler.mech1_state(data[0], scene)
+            statehandler.mech2_state(mech1, prev_mech1, mech2, prev_mech2, scene)
+            statehandler.mech3_state(data[7], scene)
+
+            data = data.map(p => parseInt(p.value))
+            scene.resource.edukit['yAxis'] = data[8]
+            scene.resource.edukit['xAxis'] = data[9]
+          } catch {
+            console.log('catching...')
           }
-
-          //신호등
-          statehandler.light_state(data[3], data[4], data[5], scene)
-
-          //1,2,3호기 실행상태
-          statehandler.mech1_state(data[0], scene)
-          statehandler.mech2_state(mech1, prev_mech1, mech2, prev_mech2, scene)
-          statehandler.mech3_state(data[7], scene)
-
-          data = data.map(p => parseInt(p.value))
-          scene.resource.edukit['yAxis'] = data[8]
-          scene.resource.edukit['xAxis'] = data[9]
         } catch {
           console.log('catching...')
         }
-      }catch{
-        console.log('catching...')
-      }})
+      })
     })
   }
 }

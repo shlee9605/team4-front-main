@@ -2,22 +2,44 @@
   <div>
     <particles />
     <div class="container">
-      <b-form-group class="box" @keyup.enter.native="onSubmit">
-        <h4>SMART FACTORY<br />SOLUTION</h4>
-        <b-form-input id="input-userid" v-model="userid" placeholder="아이디" autocomplete="off"> </b-form-input>
-        <i class="typcn typcn-eye" id="eye"></i>
-        <b-form-input id="input-password" v-model="password" placeholder="비밀번호" type="password" autocomplete="off">
-        </b-form-input>
-        <b-button aria-disabled="true" class="btn1" @click="onSubmit"
-          ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
-        >
-      </b-form-group>
-      <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
+      <validation-observer ref="observer" v-slot="{ handleSubmit }">
+        <b-form-group class="box" @submit.stop.prevent="handleSubmit(onSubmit)">
+          <h4>SMART FACTORY<br />SOLUTION</h4>
+          
+          <validation-provider name="userid" :rules="{ required: true }" v-slot="validationContext">
+            <b-form-input
+              id="input-userid"
+              v-model="userid"
+              placeholder="아이디"
+              autocomplete="off"
+              :state="getValidationState(validationContext)"
+            >
+            </b-form-input>
+            <i class="typcn typcn-eye" id="eye"></i>
+          </validation-provider>
+
+          <validation-provider>
+            <b-form-input
+              id="input-password"
+              v-model="password"
+              placeholder="비밀번호"
+              type="password"
+              autocomplete="off"
+            >
+            </b-form-input>
+            <b-button aria-disabled="true" class="btn1" @click="onSubmit"
+              ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
+            >
+          </validation-provider>
+        </b-form-group>
+        <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
+      </validation-observer>
     </div>
     <signupform />
   </div>
 </template>
 
+<!-- @keyup.enter.native="onSubmit" -->
 <script>
 import jwtDecode from 'jwt-decode'
 import signupform from './signupform.vue'
@@ -136,6 +158,9 @@ export default {
       if (event.which === 13) {
         this.onSubmit
       }
+    },
+    getValidationState({ dirty, validated, valid = null }) {
+      return dirty || validated ? valid : null
     }
   }
 }
