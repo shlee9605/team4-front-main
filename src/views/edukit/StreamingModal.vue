@@ -21,8 +21,8 @@
 export default {
   data() {
     return {
-      VUE_APP_STREAM1: process.env.VUE_APP_STREAM1,
-      VUE_APP_STREAM2: process.env.VUE_APP_STREAM2
+      VUE_APP_STREAM1: process.env.VUE_APP_STREAM2,
+      VUE_APP_STREAM2: process.env.VUE_APP_STREAM1,
     }
   },
 }
