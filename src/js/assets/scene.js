@@ -1,0 +1,107 @@
+/**
+ * Three.js의 Scene을 셋팅하는 파트입니다
+ */
+import * as THREE from 'three'
+import { Resource } from './resource'
+import { Camera } from './camera'
+import { Light } from './light'
+import { Button } from './button'
+import { TrafficLight } from './trafficLight'
+import { VisionSensor } from './visionSensor'
+import { Chips } from './chips'
+
+class Scene {
+  constructor(file = null) {
+    this.scene = new THREE.Scene()
+
+    this.resource = new Resource(file)
+    this.camera = new Camera()
+    this.light = new Light()
+    this.button = new Button()
+    this.trafficLight = new TrafficLight()
+    this.visionSensor = new VisionSensor()
+    this.chips = new Chips()
+    this.setScene()
+    this.setMesh()
+    this.setGrid()
+  }
+
+  setScene() {
+    this.scene.background = new THREE.Color(0x101010)
+
+    this.scene.add(this.resource.obj)
+    
+    this.scene.add(this.visionSensor.obj)
+
+    this.scene.add(this.light.ambientLight)
+
+    this.scene.add(this.camera.camera)
+
+    this.scene.add(this.light.dirLight)
+  }
+
+  setMesh() {
+    this.scene.add(this.button.mesh)
+
+    this.scene.add(this.button.button9)
+    this.scene.add(this.button.button12)
+    this.scene.add(this.button.button10)
+    this.scene.add(this.button.button13)
+    this.scene.add(this.button.button11)
+    this.scene.add(this.button.cube1)
+    this.scene.add(this.button.cube2)
+    this.scene.add(this.button.cube3)
+    this.scene.add(this.button.cube4)
+    this.scene.add(this.button.cube5)
+
+    this.scene.add(this.trafficLight.trafficLight1)
+    this.scene.add(this.trafficLight.trafficLight2)
+    this.scene.add(this.trafficLight.trafficLight3)
+    this.scene.add(this.trafficLight.pillarTop1)
+    this.scene.add(this.trafficLight.pillarTop2)
+    this.scene.add(this.trafficLight.pillarFloor)
+    this.scene.add(this.trafficLight.pillar)
+
+    this.scene.add(this.trafficLight.statusLight1)
+    this.scene.add(this.trafficLight.statusLight2)
+    this.scene.add(this.trafficLight.statusLight3)
+
+    this.scene.add(this.chips.chip1)
+    this.scene.add(this.chips.chip2)
+    this.scene.add(this.chips.chip3)
+    this.scene.add(this.chips.chip4)
+    this.scene.add(this.chips.chip5)
+  }
+
+  setGrid() {
+    this.grid = new THREE.GridHelper(2000, 300, 0x000000, 0x000000)
+    this.grid.material.opacity = 0.3
+    this.grid.material.transparent = true
+
+    this.scene.add(this.grid)
+  }
+
+  setLight() {
+    this.scene.add(this.light.dirLight)
+  }
+
+  setLightHelper() {
+    this.helper = new THREE.CameraHelper(this.light.dirLight.shadow.camera)
+    this.scene.add(this.helper)
+  }
+
+  removeHelper() {
+    this.scene.remove(this.helper)
+  }
+
+  setCameraHelper() {
+    this.helper = new THREE.CameraHelper(this.camera.cameraElement)
+    this.scene.add(this.helper)
+  }
+
+  get sceneElement() {
+    return this.scene
+  }
+}
+
+export { Scene }

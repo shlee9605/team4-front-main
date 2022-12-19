@@ -1,0 +1,45 @@
+{
+  "name": "vueproj",
+  "version": "0.1.1",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "ansi-regex": "^6.0.1",
+    "axios": "^0.24.0",
+    "bootstrap": "^4.5.3",
+    "bootstrap-vue": "^2.21.2",
+    "core-js": "^3.6.5",
+    "jwt-decode": "^3.1.2",
+    "mqtt": "^4.2.8",
+    "node-sass": "^8.0.0",
+    "particles.js": "^2.0.0",
+    "sass-loader": "^10",
+    "vee-validate": "^3.4.14",
+    "vue": "^2.6.11",
+    "vue-axios": "^3.4.0",
+    "vue-naver-maps": "^0.14.3",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "babel-eslint": "^10.1.0",
+    "dat.gui": "^0.7.9",
+    "eslint": "^6.8.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^6.2.2",
+    "mqtt": "^4.3.6",
+    "prettier": "^2.2.1",
+    "three": "^0.138.3",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
