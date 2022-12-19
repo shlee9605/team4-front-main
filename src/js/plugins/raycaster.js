@@ -3,16 +3,16 @@ import store from '../../store'
 const ThreeButtonHandler = {
   Experience(intersect, scene) {
     if (intersect.object.parent.name == '비전센서그룹') {
-      scene.visionSensor.visionSensorFloor.material.color.set(0xffffff)
-      scene.visionSensor.visionSensorTowerSection.material.color.set(0xffffff)
-      scene.visionSensor.visionSensorJipSection.material.color.set(0xffffff)
-      scene.visionSensor.SensorVision.material.color.set(0xffffff)
-    }
-    else{
       scene.visionSensor.visionSensorFloor.material.color.set(0x0f0f10)
       scene.visionSensor.visionSensorTowerSection.material.color.set(0x606062)
       scene.visionSensor.visionSensorJipSection.material.color.set(0x606062)
       scene.visionSensor.SensorVision.material.color.set(0x0f0f10)
+    }
+    else{
+      scene.visionSensor.visionSensorFloor.material.color.set(0x333333)
+      scene.visionSensor.visionSensorTowerSection.material.color.set(0x999999)
+      scene.visionSensor.visionSensorJipSection.material.color.set(0x999999)
+      scene.visionSensor.SensorVision.material.color.set(0x333333)
     }
   },
   Handling(intersect, scene) {
