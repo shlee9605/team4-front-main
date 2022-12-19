@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- <b-container> -->
-    <h1 class="title" v-for="dep in this.departmentList" v-if="dep.code == $route.params.depCode"><i class='bx bxs-bolt-circle bx-lg' style="padding-right: 10px"></i>{{ `${dep.name} 기계` }}</h1>
+    <h1 class="title" v-for="dep in this.departmentList" v-if="dep.code == $route.params.depCode">
+      <i class="bx bxs-bolt-circle bx-lg" style="padding-right: 10px"></i>{{ `${dep.name} 기계` }}
+    </h1>
     <div ref="webgl"></div>
     <!-- </b-container> -->
     <!-- streaming modal 영역 -->
@@ -28,9 +30,9 @@ export default {
       return this.$store.getters.DepartmentList // 부서정보 가져오기
     },
     getBoolean() {
-      console.log("여기까지 오는거지", this.$store.getters.VisionObjectClick);
+      console.log('여기까지 오는거지', this.$store.getters.VisionObjectClick)
       return this.$store.getters.VisionObjectClick
-    },
+    }
   },
   created() {
     this.$store.dispatch('actDepartmentList') // 부서정보 조회
@@ -39,8 +41,8 @@ export default {
     Three(this.$refs.webgl)
   },
   watch: {
-    getBoolean(value){
-      if(value){
+    getBoolean(value) {
+      if (value) {
         this.modalCheck()
         this.$store.commit('setVisionObjectFalse')
       }
@@ -50,12 +52,12 @@ export default {
     modalCheck() {
       if (this.$route.params.depCode == 'uvc') {
         this.modalShow2 = true
-        this.$bvModal.show("modal-streaming2")
+        this.$bvModal.show('modal-streaming2')
       } else if (this.$route.params.depCode == 'metacamp') {
         this.modalShow1 = true
-        this.$bvModal.show("modal-streaming1")
+        this.$bvModal.show('modal-streaming1')
       }
-    },
+    }
   }
 }
 </script>

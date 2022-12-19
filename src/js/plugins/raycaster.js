@@ -1,8 +1,21 @@
 import store from '../../store'
 
 const ThreeButtonHandler = {
+  Experience(intersect, scene) {
+    if (intersect.object.parent.name == '비전센서그룹') {
+      scene.visionSensor.visionSensorFloor.material.color.set(0xffffff)
+      scene.visionSensor.visionSensorTowerSection.material.color.set(0xffffff)
+      scene.visionSensor.visionSensorJipSection.material.color.set(0xffffff)
+      scene.visionSensor.SensorVision.material.color.set(0xffffff)
+    }
+    else{
+      scene.visionSensor.visionSensorFloor.material.color.set(0x0f0f10)
+      scene.visionSensor.visionSensorTowerSection.material.color.set(0x606062)
+      scene.visionSensor.visionSensorJipSection.material.color.set(0x606062)
+      scene.visionSensor.SensorVision.material.color.set(0x0f0f10)
+    }
+  },
   Handling(intersect, scene) {
-    // console.log(intersect.object.name)
     if (intersect.object.name == '1호기') {
       if (scene.button.button9.position.y == 0.5) {
         intersect.object.material.color.set(0x770000)
@@ -65,7 +78,8 @@ const ThreeButtonHandler = {
 
     if (intersect.object.parent.name == '비전센서그룹') {
       store.commit('setVisionObjectClick')
-      console.log('비전센서 클릭 => 상태값', store.getters.VisionObjectClick)
+      // console.log('비전센서 클릭 => 상태값', store.getters.VisionObjectClick)
+      return null
     }
   }
 }

@@ -1,130 +1,130 @@
 <template>
   <div>
     <b-container>
-    <h1><i class='bx bxs-user bx-lg' style="padding-right: 10px"></i>내 프로필</h1>
-    <div style="margin-bottom: 5px"></div>
-    <b-card class="text-center">
-      <div>
-        <b-row>
-          <b-col>
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-              <div class="avatar-upload">
-                <div class="avatar-edit">
-                  <form action="" method="post" id="form-image">
-                    <input type="file" id="imageUpload" accept="image/*" @change="inputImg" />
-                    <label for="imageUpload"></label>
-                  </form>
-                </div>
-              </div>
-
-              <b-avatar class="profile-user-img" size="150px">
-                <img class="img-fluid" :src="getImgUrl" />
-              </b-avatar>
-            </div>
-
+      <h1><i class="bx bxs-user bx-lg" style="padding-right: 10px"></i>내 프로필</h1>
+      <div style="margin-bottom: 5px"></div>
+      <b-card class="text-center">
+        <div>
+          <b-row>
             <b-col>
-              <div>
-                <b-form-group label="이름" label-for="name" label-cols="3">
-                  <b-input-group>
-                    <b-form-input
-                      v-if="this.inputMode === 'editName'"
-                      id="name"
-                      v-model="profileUser.name"
-                    ></b-form-input>
-                    <b-form-input v-else id="name" readonly v-model="profileUser.name"></b-form-input>
-                    <b-input-group-append>
-                      <b-button :pressed.sync="editBtn.name" title="수정" @click="editName">
-                        <b-icon icon="pencil-fill"></b-icon>
-                      </b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                </b-form-group>
+              <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <div class="avatar-upload">
+                  <div class="avatar-edit">
+                    <form action="" method="post" id="form-image">
+                      <input type="file" id="imageUpload" accept="image/*" @change="inputImg" />
+                      <label for="imageUpload"></label>
+                    </form>
+                  </div>
+                </div>
 
-                <b-form-group label="공장" label-for="department" label-cols="3">
-                  <b-form-input
-                    v-if="getDepartmentName"
-                    id="department"
-                    readonly
-                    v-model="profileUser.Department.name"
-                  ></b-form-input>
-                  <b-form-input v-else id="department" readonly></b-form-input>
-                </b-form-group>
-
-                <b-form-group label="권한" label-for="role" label-cols="3">
-                  <b-form-input id="role" readonly v-model="profileUser.role"></b-form-input>
-                </b-form-group>
-
-                <b-form-group label="아이디" label-for="userid" label-cols="3">
-                  <b-form-input
-                    v-if="this.inputMode === 'update'"
-                    id="userid"
-                    v-model="profileUser.userid"
-                  ></b-form-input>
-                  <b-form-input v-else id="userid" readonly v-model="profileUser.userid"></b-form-input>
-                </b-form-group>
-
-                <b-form-group label="비밀번호" label-for="password" label-cols="3">
-                  <b-input-group>
-                    <b-form-input
-                      v-if="this.inputMode === 'editPwd'"
-                      id="password"
-                      v-model="profileUser.password"
-                      type="password"
-                      >password</b-form-input
-                    >
-                    <b-form-input
-                      v-else
-                      id="password"
-                      readonly
-                      v-model="profileUser.password"
-                      placeholder="●●●●●●●"
-                      type="password"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-button :pressed.sync="editBtn.password" title="수정" @click="editPwd">
-                        <b-icon icon="pencil-fill"></b-icon>
-                      </b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                </b-form-group>
-
-                <b-form-group label="이메일" label-for="email" label-cols="3">
-                  <b-input-group>
-                    <b-form-input
-                      v-if="this.inputMode === 'editEmail'"
-                      id="email"
-                      v-model="profileUser.email"
-                    ></b-form-input>
-                    <b-form-input v-else id="email" readonly v-model="profileUser.email"></b-form-input>
-                    <b-input-group-append>
-                      <b-button :pressed.sync="editBtn.email" title="수정" @click="editEmail">
-                        <b-icon icon="pencil-fill"></b-icon>
-                      </b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                </b-form-group>
-
-                <b-form-group label="전화번호" label-for="phone" label-cols="3">
-                  <b-input-group>
-                    <b-form-input
-                      v-if="this.inputMode === 'editPhone'"
-                      id="phone"
-                      v-model="profileUser.phone"
-                    ></b-form-input>
-                    <b-form-input v-else id="phone" readonly v-model="profileUser.phone"></b-form-input>
-                    <b-input-group-append>
-                      <b-button :pressed.sync="editBtn.phone" title="수정" @click="editPhone">
-                        <b-icon icon="pencil-fill"></b-icon>
-                      </b-button>
-                    </b-input-group-append>
-                  </b-input-group>
-                </b-form-group>
+                <b-avatar class="profile-user-img" size="150px">
+                  <img class="img-fluid" :src="getImgUrl" />
+                </b-avatar>
               </div>
+
+              <b-col>
+                <div>
+                  <b-form-group label="이름" label-for="name" label-cols="3">
+                    <b-input-group>
+                      <b-form-input
+                        v-if="this.inputMode === 'editName'"
+                        id="name"
+                        v-model="profileUser.name"
+                      ></b-form-input>
+                      <b-form-input v-else id="name" readonly v-model="profileUser.name"></b-form-input>
+                      <b-input-group-append>
+                        <b-button :pressed.sync="editBtn.name" title="수정" @click="editName">
+                          <b-icon icon="pencil-fill"></b-icon>
+                        </b-button>
+                      </b-input-group-append>
+                    </b-input-group>
+                  </b-form-group>
+
+                  <b-form-group label="공장" label-for="department" label-cols="3">
+                    <b-form-input
+                      v-if="getDepartmentName"
+                      id="department"
+                      readonly
+                      v-model="profileUser.Department.name"
+                    ></b-form-input>
+                    <b-form-input v-else id="department" readonly></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="권한" label-for="role" label-cols="3">
+                    <b-form-input id="role" readonly v-model="profileUser.role"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="아이디" label-for="userid" label-cols="3">
+                    <b-form-input
+                      v-if="this.inputMode === 'update'"
+                      id="userid"
+                      v-model="profileUser.userid"
+                    ></b-form-input>
+                    <b-form-input v-else id="userid" readonly v-model="profileUser.userid"></b-form-input>
+                  </b-form-group>
+
+                  <b-form-group label="비밀번호" label-for="password" label-cols="3">
+                    <b-input-group>
+                      <b-form-input
+                        v-if="this.inputMode === 'editPwd'"
+                        id="password"
+                        v-model="profileUser.password"
+                        type="password"
+                        >password</b-form-input
+                      >
+                      <b-form-input
+                        v-else
+                        id="password"
+                        readonly
+                        v-model="profileUser.password"
+                        placeholder="●●●●●●●"
+                        type="password"
+                      ></b-form-input>
+                      <b-input-group-append>
+                        <b-button :pressed.sync="editBtn.password" title="수정" @click="editPwd">
+                          <b-icon icon="pencil-fill"></b-icon>
+                        </b-button>
+                      </b-input-group-append>
+                    </b-input-group>
+                  </b-form-group>
+
+                  <b-form-group label="이메일" label-for="email" label-cols="3">
+                    <b-input-group>
+                      <b-form-input
+                        v-if="this.inputMode === 'editEmail'"
+                        id="email"
+                        v-model="profileUser.email"
+                      ></b-form-input>
+                      <b-form-input v-else id="email" readonly v-model="profileUser.email"></b-form-input>
+                      <b-input-group-append>
+                        <b-button :pressed.sync="editBtn.email" title="수정" @click="editEmail">
+                          <b-icon icon="pencil-fill"></b-icon>
+                        </b-button>
+                      </b-input-group-append>
+                    </b-input-group>
+                  </b-form-group>
+
+                  <b-form-group label="전화번호" label-for="phone" label-cols="3">
+                    <b-input-group>
+                      <b-form-input
+                        v-if="this.inputMode === 'editPhone'"
+                        id="phone"
+                        v-model="profileUser.phone"
+                      ></b-form-input>
+                      <b-form-input v-else id="phone" readonly v-model="profileUser.phone"></b-form-input>
+                      <b-input-group-append>
+                        <b-button :pressed.sync="editBtn.phone" title="수정" @click="editPhone">
+                          <b-icon icon="pencil-fill"></b-icon>
+                        </b-button>
+                      </b-input-group-append>
+                    </b-input-group>
+                  </b-form-group>
+                </div>
+              </b-col>
             </b-col>
-          </b-col>
-        </b-row>
-      </div>
-    </b-card>
+          </b-row>
+        </div>
+      </b-card>
     </b-container>
   </div>
 </template>

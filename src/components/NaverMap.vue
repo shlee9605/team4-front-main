@@ -1,6 +1,12 @@
 <template>
   <div class="navermap">
-    <naver-maps style="border-radius:2rem" :height="height" :mapOptions="mapOptions" :initLayers="initLayers" @load="onLoad">
+    <naver-maps
+      style="border-radius: 2rem"
+      :height="height"
+      :mapOptions="mapOptions"
+      :initLayers="initLayers"
+      @load="onLoad"
+    >
       <!-- <naver-info-window
         class="info-window"
         @load="onWindowLoad"
