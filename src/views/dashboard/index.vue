@@ -1,24 +1,47 @@
 <template>
   <div id="divReloadLayer">
     <b-container>
-    <h1 class="title"><i class='bx bxs-dashboard bx-lg' style="padding-right: 10px"></i>대시보드</h1>
-    <div style="margin-bottom: 5px">
-    <b-row>
-      <b-col>
-    <div  class="dashBoard">
-      <iframe :src="VUE_APP_GRAFANA1_1" width="480" height="250" frameborder="0" style="border-radius: 10px;"></iframe>
-      <iframe :src="VUE_APP_GRAFANA1_2" width="480" height="250" frameborder="0" style="border-radius: 10px;"></iframe>
-      
-    </div> 
-    </b-col>
-    <b-col>
-    <div class="dashBoard">
-      <iframe :src="VUE_APP_GRAFANA2_1" width="480" height="250" frameborder="0" style="border-radius: 10px;"></iframe>
-      <iframe :src="VUE_APP_GRAFANA2_2" width="480" height="250" frameborder="0" style="border-radius: 10px;"></iframe>
-    </div>
-  </b-col>
-  </b-row>
-</div>
+      <h1 class="title"><i class="bx bxs-dashboard bx-lg" style="padding-right: 10px"></i>대시보드</h1>
+      <div style="margin-bottom: 5px">
+        <b-row>
+          <b-col>
+            <div class="dashBoard">
+              <iframe
+                :src="VUE_APP_GRAFANA1_1"
+                width="480"
+                height="250"
+                frameborder="0"
+                style="border-radius: 10px"
+              ></iframe>
+              <iframe
+                :src="VUE_APP_GRAFANA1_2"
+                width="480"
+                height="250"
+                frameborder="0"
+                style="border-radius: 10px"
+              ></iframe>
+            </div>
+          </b-col>
+          <b-col>
+            <div class="dashBoard">
+              <iframe
+                :src="VUE_APP_GRAFANA2_1"
+                width="480"
+                height="250"
+                frameborder="0"
+                style="border-radius: 10px"
+              ></iframe>
+              <iframe
+                :src="VUE_APP_GRAFANA2_2"
+                width="480"
+                height="250"
+                frameborder="0"
+                style="border-radius: 10px"
+              ></iframe>
+            </div>
+          </b-col>
+        </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -30,11 +53,10 @@ export default {
       VUE_APP_GRAFANA1_1: process.env.VUE_APP_GRAFANA1_1,
       VUE_APP_GRAFANA2_1: process.env.VUE_APP_GRAFANA2_1,
       VUE_APP_GRAFANA1_2: process.env.VUE_APP_GRAFANA1_2,
-      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2,
+      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2
     }
-  },
+  }
 }
-
 </script>
 
 <style lang="scss" scoped>

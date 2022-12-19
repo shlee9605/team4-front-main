@@ -37,8 +37,11 @@ class Event {
     }
     console.log(port, host, path)
 
-    const raycast = new THREE.Raycaster()
-    raycast.layers.set(1)
+    const raycast1 = new THREE.Raycaster()
+    raycast1.layers.set(1)
+
+    const raycast2 = new THREE.Raycaster()
+    
     const pointer = new THREE.Vector2()
 
     renderer.domElement.addEventListener('pointerdown', event => {
@@ -48,13 +51,33 @@ class Event {
 
       pointer.set(x, y)
 
-      raycast.setFromCamera(pointer, scene.camera.cameraElement)
-      const intersects = raycast.intersectObjects(scene.scene.children)
+      raycast1.setFromCamera(pointer, scene.camera.cameraElement)
+      try{
+      const intersects = raycast1.intersectObjects(scene.scene.children)
 
       if (intersects) {
         const intersect = intersects[0]
         const message = ThreeButtonHandler.Handling(intersect, scene)
-        this.sendMQTT(publish_topic, { tagId: message.tagId, value: message.value })
+        if(message != null){
+          this.sendMQTT(publish_topic, { tagId: message.tagId, value: message.value })
+        }
+      }
+      }catch{}
+    })
+
+    renderer.domElement.addEventListener('pointermove', event => {
+      const xy = calculate.ray(event, renderer)
+      const x = xy.x
+      const y = xy.y
+
+      pointer.set(x, y)
+
+      raycast2.setFromCamera(pointer, scene.camera.cameraElement)
+      const intersects = raycast2.intersectObjects(scene.scene.children)
+
+      if (intersects) {
+        const intersect = intersects[0]
+        ThreeButtonHandler.Experience(intersect, scene)
       }
     })
 

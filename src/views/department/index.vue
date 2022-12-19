@@ -1,39 +1,48 @@
 <template>
   <div>
     <b-container>
-    <div class="department">
-    <h1 class="title"><i class='bx bxs-factory bx-lg' style="padding-right: 10px"></i>공장 관리</h1>
-    <div class="box-section">
-    <div style="margin-bottom: 5px">
-      <b-row class="box-section-line">
-        <b-col style="text-align: left" cols="3">
-          <b-input-group class="mt-3">
-            <b-form-input v-model="search.name" placeholder="공장 검색"></b-form-input>
-            <b-input-group-append>
-              <b-button variant="primary" size="sm" @click="searchDepartmentList">검색</b-button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-col>
-        <b-col style="text-align: right">
-          <b-button variant="success" size="sm" @click="onClickAddNew">신규등록</b-button>
-        </b-col>
-      </b-row>
-    </div>
-    <div>
-      <b-table head-variant="dark" bordered striped outlined table-variant="light" hover :items="departmentList" :fields="fields">
-        <template #cell(createdAt)="row">
-          {{ row.item.createdAt.substring(0, 10) }}
-        </template>
-        <template #cell(updateBtn)="row">
-          <a class="edit" @click="onClickEdit(row.item.id)"><i class='bx bxs-edit-alt bx-sm'></i></a>
-        </template>
-        <template #cell(deleteBtn)="row">
-          <a class="delete" @click="onClickDelete(row.item.id)"><i class='bx bxs-trash bx-sm'></i></a>
-        </template>
-      </b-table>
-    </div>
-    </div>
-    </div>
+      <div class="department">
+        <h1 class="title"><i class="bx bxs-factory bx-lg" style="padding-right: 10px"></i>공장 관리</h1>
+        <div class="box-section">
+          <div style="margin-bottom: 5px">
+            <b-row class="box-section-line">
+              <b-col style="text-align: left" cols="3">
+                <b-input-group class="mt-3">
+                  <b-form-input v-model="search.name" placeholder="공장 검색"></b-form-input>
+                  <b-input-group-append>
+                    <b-button variant="primary" size="sm" @click="searchDepartmentList">검색</b-button>
+                  </b-input-group-append>
+                </b-input-group>
+              </b-col>
+              <b-col style="text-align: right">
+                <b-button variant="success" size="sm" @click="onClickAddNew">신규등록</b-button>
+              </b-col>
+            </b-row>
+          </div>
+          <div>
+            <b-table
+              head-variant="dark"
+              bordered
+              striped
+              outlined
+              table-variant="light"
+              hover
+              :items="departmentList"
+              :fields="fields"
+            >
+              <template #cell(createdAt)="row">
+                {{ row.item.createdAt.substring(0, 10) }}
+              </template>
+              <template #cell(updateBtn)="row">
+                <a class="edit" @click="onClickEdit(row.item.id)"><i class="bx bxs-edit-alt bx-sm"></i></a>
+              </template>
+              <template #cell(deleteBtn)="row">
+                <a class="delete" @click="onClickDelete(row.item.id)"><i class="bx bxs-trash bx-sm"></i></a>
+              </template>
+            </b-table>
+          </div>
+        </div>
+      </div>
     </b-container>
     <!-- inform 영역 -->
     <inform />
@@ -199,7 +208,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
 * {
-  font-family: 'Noto Sans KR', sans-serif; 
+  font-family: 'Noto Sans KR', sans-serif;
 }
 .department a {
   color: black;
@@ -207,10 +216,10 @@ export default {
   cursor: pointer;
 }
 .edit:hover {
-  color: #0069D9;
+  color: #0069d9;
 }
 .delete:hover {
-  color: #C82333;
+  color: #c82333;
 }
 .box-section {
   flex: 2;
@@ -230,19 +239,19 @@ export default {
     align-items: self-end;
     padding-bottom: 10px;
   }
-  
+
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
     color: rgb(0, 0, 0);
-    
+
     p {
       font-size: 24px;
       line-height: 32px;
       font-weight: 700;
-      opacity: .9;
+      opacity: 0.9;
       margin: 0;
     }
   }
@@ -255,5 +264,4 @@ export default {
 /deep/ .table .thead-dark th {
   text-transform: uppercase !important;
 }
-
 </style>

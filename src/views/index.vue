@@ -4,15 +4,15 @@
     <b-container fluid style="padding-left: 0px">
       <b-row>
         <!-- Side bar -->
-          <app-sidebar class="sidebar"/>
+    <app-sidebar class="sidebar" />
 
-      <b-container fluid>
-        <!-- Body contents -->
-        <!-- <app-header class="header" v-if="this.$route.meta.header !== false" /> -->
-        <div class="content-body">
-          <router-view :key="$route.path" />
-        </div>
-        </b-container>
+    <b-container fluid>
+      <!-- Body contents -->
+      <!-- <app-header class="header" v-if="this.$route.meta.header !== false" /> -->
+      <div class="content-body">
+        <router-view :key="$route.path" />
+      </div>
+    </b-container>
   </div>
 </template>
 
@@ -23,10 +23,9 @@ import Header from '../components/layout/Header'
 export default {
   components: {
     'app-sidebar': Sidebar,
-    'app-header': Header,
+    'app-header': Header
   }
 }
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
