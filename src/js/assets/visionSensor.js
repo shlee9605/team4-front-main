@@ -4,7 +4,6 @@ import * as THREE from 'three'
 class VisionSensor {
   constructor() {
     this.obj = new Group()
-    
 
     this.visionSensorFloor = new THREE.Mesh(
       new THREE.BoxGeometry(5, 0.4, 3, 100),
@@ -31,7 +30,7 @@ class VisionSensor {
     this.visionSensorFloor.position.x += 0
     this.visionSensorFloor.position.y += 0.15
     this.visionSensorFloor.position.z += 0
-    this.visionSensorFloor.layers.enable(1);
+    this.visionSensorFloor.layers.enable(1)
 
     this.visionSensorTowerSection.rotateY(-(Math.PI / 2))
     this.visionSensorTowerSection.name = '비전센서메인기둥'
@@ -56,8 +55,7 @@ class VisionSensor {
 
     //비전센서 4가지를 그룹화 해주고 이름을 넣어줌
     this.obj.add(this.visionSensorFloor, this.visionSensorTowerSection, this.visionSensorJipSection, this.SensorVision)
-    this.obj.name = "비전센서그룹"
-
+    this.obj.name = '비전센서그룹'
   }
 }
 

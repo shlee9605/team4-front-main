@@ -30,7 +30,7 @@ class Scene {
     this.scene.background = new THREE.Color(0x101010)
 
     this.scene.add(this.resource.obj)
-    
+
     this.scene.add(this.visionSensor.obj)
 
     this.scene.add(this.light.ambientLight)
@@ -66,11 +66,9 @@ class Scene {
     this.scene.add(this.trafficLight.statusLight2)
     this.scene.add(this.trafficLight.statusLight3)
 
-    this.scene.add(this.chips.chip1)
-    this.scene.add(this.chips.chip2)
-    this.scene.add(this.chips.chip3)
-    this.scene.add(this.chips.chip4)
-    this.scene.add(this.chips.chip5)
+    for (let i = 0; i < 5; i++) {
+      this.scene.add(this.chips.chip[i])
+    }
   }
 
   setGrid() {
