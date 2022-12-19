@@ -7,19 +7,19 @@ class VisionSensor {
 
     this.visionSensorFloor = new THREE.Mesh(
       new THREE.BoxGeometry(5, 0.4, 3, 100),
-      new THREE.MeshPhongMaterial({ color: 0x0f0f10, specular: 0x00ff00, shininess: 100 })
+      new THREE.MeshPhongMaterial({ color: 0x0f0f10, specular: 0xff3300, shininess: 100 })
     )
     this.visionSensorTowerSection = new THREE.Mesh(
       new THREE.BoxGeometry(4, 10, 0.5, 100),
-      new THREE.MeshPhongMaterial({ color: 0x606062, specular: 0x00ff00, shininess: 100 })
+      new THREE.MeshPhongMaterial({ color: 0xffff00, specular: 0xffff00, shininess: 100 })
     )
     this.visionSensorJipSection = new THREE.Mesh(
       new THREE.BoxGeometry(5, 0.3, 0.5, 100),
-      new THREE.MeshPhongMaterial({ color: 0x606062, specular: 0x00ff00, shininess: 100 })
+      new THREE.MeshPhongMaterial({ color: 0x3333cc, specular: 0x3333cc, shininess: 100 })
     )
     this.SensorVision = new THREE.Mesh(
       new THREE.BoxGeometry(1, 1, 3, 100),
-      new THREE.MeshPhongMaterial({ color: 0x0f0f10, specular: 0x00ff00, shininess: 100 })
+      new THREE.MeshPhongMaterial({ color: 0x33ff33, specular: 0x00ff00, shininess: 100 })
     )
     this.visionSensor()
   }
