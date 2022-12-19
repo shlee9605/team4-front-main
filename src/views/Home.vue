@@ -16,10 +16,46 @@
     </b-col>
   </b-row>
   <b-row style="padding: 10px">
-    <b-col sm>
+    <b-col sm style="padding-top: 80px">
     <b-card>
-    <h2>About SmartFactory Solution</h2>
-    <p>asdkfjqe;ovnrq;ejkndv;kqejvnb;oerkjg;lkebj;qlejgbl;ekjvbdfgbsfbsffffffffffffffffffffffffffffffffff</p>
+    <h2 style="padding-bottom: 50px">About Prime Factory</h2>
+    <div class="row text-center">
+              <div class="col-md-3" style="margin-bottom: 8vh">
+                <b-avatar class="profile-user-img" size="200px">
+                  <img class="img-fluid" src="@/assets/wolf.jpg" />
+                </b-avatar>
+                <h4 class="my-3">승호</h4>
+                <p class="text-muted"># Chief Developer<br /></p>
+              </div>
+
+              <div class="col-md-3" style="margin-bottom: 8vh">
+                <b-avatar class="profile-user-img" size="200px">
+                  <img class="img-fluid" src="@/assets/owl.jpg" />
+                </b-avatar>
+                <h4 class="my-3">애니</h4>
+                <p class="text-muted"># Frontend Developer<br /></p>
+              </div>
+
+              <div class="col-md-3" style="margin-bottom: 8vh">
+                <b-avatar class="profile-user-img" size="200px">
+                  <img class="img-fluid" src="@/assets/tiger.jpg" />
+                </b-avatar>
+                <h4 class="my-3">상훈</h4>
+                <p class="text-muted"># Frontend Developer<br /></p>
+              </div>
+
+              <div class="col-md-3" style="margin-bottom: 8vh">
+                <b-avatar class="profile-user-img" size="200px">
+                  <img class="img-fluid" src="@/assets/cat.jpg" />
+                </b-avatar>
+                <h4 class="my-3">태환</h4>
+                <p class="text-muted"># Backend Developer<br /></p>
+              </div>
+
+    </div>
+
+
+
     </b-card>
     </b-col>
   </b-row>
@@ -61,4 +97,11 @@ export default {
   margin-left: auto;
   text-align: center;
 }
+
+img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
 </style>
