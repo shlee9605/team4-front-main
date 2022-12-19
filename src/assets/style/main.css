@@ -4,59 +4,19 @@
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* .content-body {
-  position: absolute;
-  height: 100%;
-  width: calc(100% - 0px);
-  left: 0px;
-  padding: 5px 20px 20px 20px;
-  transition: all 0.5s ease;
-}
-.content-body .text {
-  font-size: 25px;
-  font-weight: 500;
-  color: #1d1b31;
-  margin: 12px;
-} */
-
 html,
 body {
   margin: 0;
   height: 100%;
-
 }
 
-/* .home-page,
-.home-section {
-  position: relative;
-  background: #E4E9F7;
-  min-height: 100vh;
-  top: 0;
-  left: 78px;
-  width: calc(100% - 78px);
-  transition: all 0.5s ease;
-  z-index: 2;
-} */
-
-/* .sidebar.open .home-page,
-.sidebar.open .home-section{
-  left: 250px;
-  width: calc(100% - 250px);
-}
-.home-section .text{
-  display: inline-block;
-  color: #11101d;
-  font-size: 25px;
-  font-weight: 500;
-  margin: 18px
-} */
 .content-body {
   box-sizing: border-box;
   /* // border: solid red 5px;
   // border-radius: 2em; */
   background-color: #d6d8db36;
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   left: 0px;
   padding: 20px 20px 20px 20px;
