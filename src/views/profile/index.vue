@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container>
-    <h1><i class='bx bxs-user bx-lg' style="padding-right: 10px"></i></i>내 프로필</h1>
+    <h1><i class='bx bxs-user bx-lg' style="padding-right: 10px"></i>내 프로필</h1>
     <div style="margin-bottom: 5px"></div>
     <b-card class="text-center">
       <div>
@@ -40,7 +40,7 @@
                   </b-input-group>
                 </b-form-group>
 
-                <b-form-group label="부서" label-for="department" label-cols="3">
+                <b-form-group label="공장" label-for="department" label-cols="3">
                   <b-form-input
                     v-if="getDepartmentName"
                     id="department"

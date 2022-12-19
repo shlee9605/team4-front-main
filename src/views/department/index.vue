@@ -51,8 +51,8 @@ export default {
     return {
       fields: [
         { key: 'id', label: 'id' },
-        { key: 'name', label: '부서명' },
-        { key: 'code', label: '부서코드' },
+        { key: 'name', label: '공장명' },
+        { key: 'code', label: '공장코드' },
         { key: 'createdAt', label: '생성일' },
         { key: 'updateBtn', label: '수정' },
         { key: 'deleteBtn', label: '삭제' }

@@ -3,7 +3,7 @@
   <div class="sidebar" v-bind:class="{open: isActive}">
     <div class="logo-details">
       <i class="bx bxs-bolt-circle icon bx-sm"></i>
-      <div class="logo_name" @click="onClick('/')">Smart Factory</div>
+      <div class="logo_name" @click="onClick('/')">Prime Factory</div>
       <i v-bind:class="{ 'bx bx-menu-alt-right bx-sm': isActive, 'bx bx-menu bx-sm': !isActive }" id="btn" @click="handleMenu"></i>
     </div>
 

@@ -3,27 +3,19 @@
     <particles />
     <div class="container">
       <div>
-      <b-img :src="require('@/assets/logo-img.png')" fluid width="200" height="auto"></b-img>
+      <b-img :src="require('@/assets/new-logo.png')" fluid width="200" height="auto"></b-img>
       </div>
-      <!-- <validation-observer ref="observer" v-slot="{ handleSubmit }"> -->
         <b-form-group class="box">
-          
-          <!-- <h4>SMART FACTORY<br />SOLUTION</h4> -->
-          
-          <!-- <validation-provider name="userid" :rules="{ required: true }" v-slot="validationContext"> -->
+
             <b-form-input
               id="input-userid"
               v-model="userid"
               placeholder="아이디"
               autocomplete="off"
-              state="getValidationState(validationContext)"
             >
             </b-form-input>
-            <!-- <b-form-invalid-feedback id="input-userid-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback> -->
             <i class="typcn typcn-eye" id="eye"></i>
-          <!-- </validation-provider> -->
 
-          <!-- <validation-provider> -->
             <b-form-input
               id="input-password"
               v-model="password"
@@ -35,10 +27,8 @@
             <b-button aria-disabled="true" class="btn1" @click="onSubmit"
               ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
             >
-          <!-- </validation-provider> -->
         </b-form-group>
         <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
-      <!-- </validation-observer> -->
     </div>
     <signupform />
   </div>
@@ -163,9 +153,6 @@ export default {
       if (event.which === 13) {
         this.onSubmit
       }
-    },
-    getValidationState({ dirty, validated, valid = null }) {
-      return dirty || validated ? valid : null
     }
   }
 }

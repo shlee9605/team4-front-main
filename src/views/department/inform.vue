@@ -6,10 +6,10 @@
         <b-form-group v-if="inputMode === 'update'" label="id" label-for="id" label-cols="3">
           <b-form-input id="id" v-model="department.id" disabled></b-form-input>
         </b-form-group>
-        <b-form-group label="부서이름" label-for="name" label-cols="3">
+        <b-form-group label="공장이름" label-for="name" label-cols="3">
           <b-form-input id="name" v-model="department.name"></b-form-input>
         </b-form-group>
-        <b-form-group label="부서코드" label-for="code" label-cols="3">
+        <b-form-group label="공장코드" label-for="code" label-cols="3">
           <b-form-select id="code" v-model="department.code" :options="options"> </b-form-select>
         </b-form-group>
         <!-- <b-form-group label="부서코드" label-for="code" label-cols="3" description="중복코드는 허용되지 않습니다.">
@@ -78,9 +78,9 @@ export default {
     getTitle() {
       let title = ''
       if (this.inputMode === 'insert') {
-        title = '부서정보 입력'
+        title = '공장정보 입력'
       } else if (this.inputMode === 'update') {
-        title = '부서정보 수정'
+        title = '공장정보 수정'
       }
       return title
     },

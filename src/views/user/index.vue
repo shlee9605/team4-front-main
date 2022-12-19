@@ -58,7 +58,7 @@ export default {
       fields: [
         { key: 'id', label: 'id' },
         { key: 'name', label: '이름' },
-        { key: 'Department', label: '부서' },
+        { key: 'Department', label: '공장' },
         { key: 'userid', label: '아이디' },
         { key: 'role', label: '권한' },
         { key: 'email', label: '이메일' },

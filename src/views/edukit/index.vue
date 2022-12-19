@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1 v-for="dep in this.departmentList" v-if="dep.code == $route.params.depCode">{{ `${dep.name} 기계` }}</h1>
+    <!-- <b-container> -->
+    <h1 class="title" v-for="dep in this.departmentList" v-if="dep.code == $route.params.depCode"><i class='bx bxs-bolt-circle bx-lg' style="padding-right: 10px"></i>{{ `${dep.name} 기계` }}</h1>
     <div ref="webgl"></div>
     <div>
       <b-button v-if="modalShow1 == true" v-b-modal.modal-streaming1 variant="success" size="sm">stream1</b-button>
       <b-button v-if="modalShow2 == true" v-b-modal.modal-streaming2 variant="success" size="sm">stream2</b-button>
     </div>
+    <!-- </b-container> -->
     <!-- streaming modal 영역 -->
     <StreamingModal />
   </div>
@@ -62,4 +64,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.title {
+  padding-left: 24px;
+  padding-top: 24px;
+  padding-bottom: 10px;
+}
+</style>

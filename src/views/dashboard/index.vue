@@ -1,7 +1,7 @@
 <template>
   <div id="divReloadLayer">
     <b-container>
-    <h1 class="title"><i class='bx bxs-dashboard bx-lg' style="padding-right: 10px"></i></i>대시보드</h1>
+    <h1 class="title"><i class='bx bxs-dashboard bx-lg' style="padding-right: 10px"></i>대시보드</h1>
     <div  class="dashBoard">
       <iframe :src="VUE_APP_GRAFANA1_1" width="450" height="200" frameborder="0"></iframe>
       <iframe :src="VUE_APP_GRAFANA2_1" width="450" height="200" frameborder="0"></iframe>
