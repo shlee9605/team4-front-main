@@ -12,9 +12,6 @@
         <b-form-group label="공장코드" label-for="code" label-cols="3">
           <b-form-select id="code" v-model="department.code" :options="options"> </b-form-select>
         </b-form-group>
-        <!-- <b-form-group label="부서코드" label-for="code" label-cols="3" description="중복코드는 허용되지 않습니다.">
-          <b-form-input id="code" v-model="department.code"></b-form-input>
-        </b-form-group> -->
         <b-form-group label="상세설명" label-for="description" label-cols="3">
           <b-form-textarea id="description" v-model="department.description" rows="3" />
         </b-form-group>
