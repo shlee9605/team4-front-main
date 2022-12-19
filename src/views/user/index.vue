@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'id', label: 'id' },
+        // { key: 'id', label: 'id' },
         { key: 'name', label: '이름' },
         { key: 'Department', label: '공장' },
         { key: 'userid', label: '아이디' },
