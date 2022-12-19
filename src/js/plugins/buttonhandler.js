@@ -1,6 +1,12 @@
 const buttonhandler = {
   //connecting button
-  buttonConnect(start, stop, reset) {
+  buttonConnect(start, stop, reset, scene) {
+    for (let i = 0; i < 5; i++) {
+      scene.chips.chip[i].position.x = -15
+      scene.chips.chip[i].position.y = 1.3
+      scene.chips.chip[i].position.z = 3
+      scene.chips.chip[i].material.color.set(0x777777)
+    }
     this.buttonReset(start, stop, reset)
     start.classList.add('btn-success')
     stop.classList.add('btn-success')

@@ -1,16 +1,16 @@
 export default {
-    state: {
-        VisionObjectClick: false,
+  state: {
+    VisionObjectClick: false
+  },
+  getters: {
+    VisionObjectClick: state => state.VisionObjectClick
+  },
+  mutations: {
+    setVisionObjectClick(state) {
+      state.VisionObjectClick = true
     },
-    getters: {
-        VisionObjectClick: state => state.VisionObjectClick,
-    },
-    mutations: {
-        setVisionObjectClick(state) {
-            state.VisionObjectClick = true
-        },
-        setVisionObjectFalse(state) {
-            state.VisionObjectClick = false
-        }
+    setVisionObjectFalse(state) {
+      state.VisionObjectClick = false
     }
+  }
 }

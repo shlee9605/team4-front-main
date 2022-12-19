@@ -25,20 +25,8 @@
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <!-- <b-navbar-nav v-if="isLoggedin" class="ml-auto"> -->
 
         </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      deviceUVC: null,
-      deviceMetacamp: null
     }
   },
   computed: {
