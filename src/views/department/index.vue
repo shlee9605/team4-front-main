@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       fields: [
-        { key: 'id', label: 'id' },
+        // { key: 'id', label: 'id' },
         { key: 'name', label: '공장명' },
         { key: 'code', label: '공장코드' },
         { key: 'createdAt', label: '생성일' },
