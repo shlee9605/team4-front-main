@@ -1,7 +1,8 @@
-import store from "../../store"
+import store from '../../store'
 
 const ThreeButtonHandler = {
   Handling(intersect, scene) {
+    // console.log(intersect.object.name)
     if (intersect.object.name == '1호기') {
       if (scene.button.button9.position.y == 0.5) {
         intersect.object.material.color.set(0x770000)
@@ -62,9 +63,9 @@ const ThreeButtonHandler = {
       }
     }
 
-    if (intersect.object.parent.name == "비전센서그룹") {
+    if (intersect.object.parent.name == '비전센서그룹') {
       store.commit('setVisionObjectClick')
-      console.log("비전센서 클릭 => 상태값", store.getters.VisionObjectClick);
+      console.log('비전센서 클릭 => 상태값', store.getters.VisionObjectClick)
     }
   }
 }

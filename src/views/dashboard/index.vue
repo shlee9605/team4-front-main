@@ -1,10 +1,10 @@
 <template>
   <div id="divReloadLayer">
     <h1>대시보드</h1>
-    <div  class="dashBoard">
+    <div class="dashBoard">
       <iframe :src="VUE_APP_GRAFANA1_1" width="450" height="200" frameborder="0"></iframe>
       <iframe :src="VUE_APP_GRAFANA2_1" width="450" height="200" frameborder="0"></iframe>
-    </div>  
+    </div>
     <div class="dashBoard">
       <iframe :src="VUE_APP_GRAFANA1_2" width="450" height="200" frameborder="0"></iframe>
       <iframe :src="VUE_APP_GRAFANA2_2" width="450" height="200" frameborder="0"></iframe>
@@ -19,11 +19,10 @@ export default {
       VUE_APP_GRAFANA1_1: process.env.VUE_APP_GRAFANA1_1,
       VUE_APP_GRAFANA2_1: process.env.VUE_APP_GRAFANA2_1,
       VUE_APP_GRAFANA1_2: process.env.VUE_APP_GRAFANA1_2,
-      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2,
+      VUE_APP_GRAFANA2_2: process.env.VUE_APP_GRAFANA2_2
     }
-  },
+  }
 }
-
 </script>
 
 <style lang="scss" scoped>
