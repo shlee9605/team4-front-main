@@ -2,33 +2,33 @@
   <div>
     <particles />
     <div class="container">
-      <!-- <validation-observer ref="observer" v-slot="{ handleSubmit }"> -->
-      <b-form-group class="box">
-        <h4>SMART FACTORY<br />SOLUTION</h4>
+      <div>
+      <b-img :src="require('@/assets/new-logo.png')" fluid width="200" height="auto"></b-img>
+      </div>
+        <b-form-group class="box">
 
-        <!-- <validation-provider name="userid" :rules="{ required: true }" v-slot="validationContext"> -->
-        <b-form-input
-          id="input-userid"
-          v-model="userid"
-          placeholder="아이디"
-          autocomplete="off"
-          state="getValidationState(validationContext)"
-        >
-        </b-form-input>
-        <!-- <b-form-invalid-feedback id="input-userid-live-feedback">{{ validationContext.errors[0] }}</b-form-invalid-feedback> -->
-        <i class="typcn typcn-eye" id="eye"></i>
-        <!-- </validation-provider> -->
+            <b-form-input
+              id="input-userid"
+              v-model="userid"
+              placeholder="아이디"
+              autocomplete="off"
+            >
+            </b-form-input>
+            <i class="typcn typcn-eye" id="eye"></i>
 
-        <!-- <validation-provider> -->
-        <b-form-input id="input-password" v-model="password" placeholder="비밀번호" type="password" autocomplete="off">
-        </b-form-input>
-        <b-button aria-disabled="true" class="btn1" @click="onSubmit"
-          ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
-        >
-        <!-- </validation-provider> -->
-      </b-form-group>
-      <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
-      <!-- </validation-observer> -->
+            <b-form-input
+              id="input-password"
+              v-model="password"
+              placeholder="비밀번호"
+              type="password"
+              autocomplete="off"
+            >
+            </b-form-input>
+            <b-button aria-disabled="true" class="btn1" @click="onSubmit"
+              ><b-spinner v-if="loading" small></b-spinner>로그인</b-button
+            >
+        </b-form-group>
+        <a href="#" class="dnthave" @click="onClickAddNew">회원가입</a>
     </div>
     <signupform />
   </div>
@@ -153,9 +153,6 @@ export default {
       if (event.which === 13) {
         this.onSubmit
       }
-    },
-    getValidationState({ dirty, validated, valid = null }) {
-      return dirty || validated ? valid : null
     }
   }
 }
@@ -282,10 +279,10 @@ a:hover {
 }
 
 .invalid-feedback {
-  width: 100%;
-  // margin-top: 0.25rem;
-  font-size: 0.8em;
-  // right: 80%;
-  color: #ffc107b8;
+    width: 100%;
+    // margin-top: 0.25rem;
+    font-size: 0.8em;
+    // right: 80%;
+    color: #ffc107b8;
 }
 </style>

@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1>사용자 관리</h1>
+    <b-container>
+    <div class="users">
+    <h1 class="title"><i class='bx bxs-user-account bx-lg' style="padding-right: 10px"></i>사용자 관리</h1>
+    <div class="box-section">
     <div style="margin-bottom: 5px">
-      <b-row>
+      <b-row class="box-section-line">
         <b-col style="text-align: left" cols="3">
           <b-input-group class="mt-3">
             <b-form-input v-model="search.name" placeholder="이름 검색"></b-form-input>
@@ -18,7 +21,7 @@
       </b-row>
     </div>
     <div>
-      <b-table small hover striped :items="userList" :fields="fields">
+      <b-table head-variant="dark" bordered striped outlined table-variant="light" hover :items="userList" :fields="fields">
         <template #cell(Department)="row">
           {{ row.item.Department && row.item.Department.name }}
         </template>
@@ -26,14 +29,18 @@
           {{ row.item.createdAt.substring(0, 10) }}
         </template>
         <template #cell(updateBtn)="row">
-          <b-button size="sm" variant="success" @click="onClickEdit(row.item.id)">수정</b-button>
+          <a class="edit" @click="onClickEdit(row.item.id)"><i class='bx bxs-edit-alt bx-sm'></i></a>
+          <!-- <b-button size="sm" variant="success" @click="onClickEdit(row.item.id)">수정</b-button> -->
         </template>
         <template #cell(deleteBtn)="row">
-          <b-button size="sm" variant="danger" @click="onClickDelete(row.item.id)">삭제</b-button>
+          <a class="delete" @click="onClickDelete(row.item.id)"><i class='bx bxs-trash bx-sm'></i></a>
+          <!-- <b-button size="sm" variant="danger" @click="onClickDelete(row.item.id)">삭제</b-button> -->
         </template>
       </b-table>
     </div>
-
+    </div>
+    </div>
+    </b-container>
     <!-- inform 영역 -->
     <inform />
   </div>
@@ -51,7 +58,7 @@ export default {
       fields: [
         { key: 'id', label: 'id' },
         { key: 'name', label: '이름' },
-        { key: 'Department', label: '부서' },
+        { key: 'Department', label: '공장' },
         { key: 'userid', label: '아이디' },
         { key: 'role', label: '권한' },
         { key: 'email', label: '이메일' },
@@ -200,4 +207,64 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+* {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.users a {
+  color: black;
+  padding-bottom: 0px;
+  cursor: pointer;
+}
+.edit:hover {
+  color: #0069D9
+}
+.delete:hover {
+  color: #C82333;
+}
+.box-section {
+  flex: 2;
+  // background-color: #181D31;
+  border-radius: 32px;
+  padding: 20px 32px 32px 32px;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // color: #fff;
+  text-align: center;
+
+  &-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: self-end;
+    padding-bottom: 10px;
+  }
+  
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    color: rgb(0, 0, 0);
+    
+    p {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 700;
+      opacity: .9;
+      margin: 0;
+    }
+  }
+}
+
+.title {
+  padding-left: 24px;
+  padding-top: 24px;
+}
+/deep/ .table .thead-dark th {
+  text-transform: uppercase !important;
+}
+</style>

@@ -15,7 +15,7 @@
           <b-form-input id="name" v-model="user.name"></b-form-input>
         </b-form-group>
 
-        <b-form-group label="부서" label-for="department" label-cols="3">
+        <b-form-group label="공장" label-for="department" label-cols="3">
           <b-form-select
             id="department"
             v-model="user.departmentId"
@@ -24,7 +24,7 @@
             text-field="name"
           >
             <template #first>
-              <b-form-select-option :value="null">-- 부서를 선택해 주세요 --</b-form-select-option>
+              <b-form-select-option :value="null">-- 공장을 선택해 주세요 --</b-form-select-option>
             </template>
           </b-form-select>
         </b-form-group>

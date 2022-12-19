@@ -57,4 +57,55 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+/deep/ .modal-content {
+  background-color: transparent;
+}
+/deep/ .modal-header {
+  background-color: #1d1b31;
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}
+/deep/ .modal-header .close {
+  padding: 1rem 1rem;
+  margin: -1rem -1rem -1rem auto;
+  color: #fff;
+}
+/deep/ .modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 3rem;
+  background-color: #fff;
+}
+/deep/ .modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1.2rem;
+  border-bottom-right-radius: 9px;
+  border-bottom-left-radius: 9px;
+  background-color: #1d1b31;
+}
+/deep/ .button.close {
+  color: #fff;
+  background-color: transparent;
+}
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    /* text-shadow: 0 1px 0 #fff; */
+    opacity: .8;
+}
+.close:hover {
+  color: #fff;
+}
+</style>

@@ -1,31 +1,32 @@
 <template>
   <div>
-    <div class="separate-body"></div>
+    <!-- <div class="separate-body"></div>
     <b-container fluid style="padding-left: 0px">
       <b-row>
         <!-- Side bar -->
-        <b-col cols="2" style="padding-right: 0px">
-          <app-sidebar />
-        </b-col>
+          <app-sidebar class="sidebar"/>
+
+      <b-container fluid>
         <!-- Body contents -->
-        <b-col style="padding-left: 0px; padding-right: 0px">
-          <div class="content-body">
-            <router-view />
-          </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        <!-- <app-header class="header" v-if="this.$route.meta.header !== false" /> -->
+        <div class="content-body">
+          <router-view :key="$route.path" />
+        </div>
+        </b-container>
   </div>
 </template>
 
 <script>
 import Sidebar from '../components/layout/Sidebar'
+import Header from '../components/layout/Header'
 
 export default {
   components: {
-    'app-sidebar': Sidebar
+    'app-sidebar': Sidebar,
+    'app-header': Header,
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>
