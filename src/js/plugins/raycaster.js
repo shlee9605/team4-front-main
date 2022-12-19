@@ -9,10 +9,10 @@ const ThreeButtonHandler = {
       scene.visionSensor.SensorVision.material.color.set(0x0f0f10)
     }
     else{
-      scene.visionSensor.visionSensorFloor.material.color.set(0x333333)
-      scene.visionSensor.visionSensorTowerSection.material.color.set(0x999999)
-      scene.visionSensor.visionSensorJipSection.material.color.set(0x999999)
-      scene.visionSensor.SensorVision.material.color.set(0x333333)
+      scene.visionSensor.visionSensorFloor.material.color.set(0xff3300)
+      scene.visionSensor.visionSensorTowerSection.material.color.set(0xffff00)
+      scene.visionSensor.visionSensorJipSection.material.color.set(0x3333cc)
+      scene.visionSensor.SensorVision.material.color.set(0x33ff33)
     }
   },
   Handling(intersect, scene) {
